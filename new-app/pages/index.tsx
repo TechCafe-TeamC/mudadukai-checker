@@ -1,11 +1,13 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
+import Hero from '../components/Hero'
 
 const Home: NextPage = () => {
   return (
-    <div>
-      Hello world!
+    <div className='flex justify-center items-center'>
+      <Link href='/wallet' className=' w-full h-screen bg-orange-300'></Link>
+      <Hero />
     </div>
   )
 }
