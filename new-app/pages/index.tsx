@@ -2,26 +2,33 @@ import type { NextPage } from 'next'
 import Link from 'next/link'
 import React from 'react'
 import Hero from '../components/Hero'
+import { motion } from 'framer-motion'
 
 const Home: NextPage = () => {
   return (
-    <div className='
-      flex
-      justify-center
-      items-center'
+    <motion.div
+      initial={{ x: 1000 }}
+      animate={{ x: 0 }}
+      exit={{ x: -1000 }}
+      transition={{ ease: "easeOut", duration: 0.3 }}
     >
-      <Link href='/wallet'
-        className='
-          w-full
-          h-screen
-          bg-gray-900'
-      ></Link>
       <div className='
-        absolute'
+        flex
+        justify-center
+        items-center'
       >
-        <Hero />
+        <Link href='/wallet'
+          className='
+            w-full
+            h-screen'
+        ></Link>
+        <div className='
+          absolute'
+        >
+          <Hero />
+        </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

@@ -3,6 +3,8 @@ import * as Icon from 'react-bootstrap-icons'
 import React from 'react'
 
 const WalletHeader = () => {
+
+    
   return (
     <div className='
       flex-col absolute right-5 top-5'
@@ -18,8 +20,7 @@ const WalletHeader = () => {
           rounded-full
           border-gold
           flex
-          justify-center
-          hover:bg-orange-100'
+          justify-center'
       >
         <Icon.House
           size='32'
