@@ -6,18 +6,16 @@ const Hero = () => {
     <div className='text-center'>
         <h1 className='font-black text-4xl p-10'>HELLO WORLD</h1>
         <div className='bg-gray-100 rounded-3xl w-[150px] py-4 mx-auto'>
-            <div className='text-xl py-2'>
-                <Link href='/login'>
-                    Login
-                </Link>
-            </div>
-            <div className='text-xl py-2'>
-                <Link href='/register'>
-                    Register
-                </Link>
-            </div>
+            <Link href='/login'>
+                <div className='text-xl py-2'>Login</div>
+            </Link>
+            <Link href='/register'>
+                <div className='text-xl py-2'>Register</div>
+            </Link>
         </div>
-        <p className='p-5'>Click to Start</p>
+        <Link href='/wallet'>
+            <p className='p-5'>Click to Start</p>
+        </Link>
     </div>
   )
 }
