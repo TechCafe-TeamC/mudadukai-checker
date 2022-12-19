@@ -5,9 +5,20 @@ import Hero from '../components/Hero'
 
 const Home: NextPage = () => {
   return (
-    <div className='flex justify-center items-center'>
-      <Link href='/wallet' className='w-full h-screen bg-orange-300'></Link>
-      <div className='absolute'>
+    <div className='
+      flex
+      justify-center
+      items-center'
+    >
+      <Link href='/wallet'
+        className='
+          w-full
+          h-screen
+          bg-gray-900'
+      ></Link>
+      <div className='
+        absolute'
+      >
         <Hero />
       </div>
     </div>

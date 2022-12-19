@@ -1,12 +1,17 @@
-import Link from 'next/link'
 import React from 'react'
+import WalletHeader from '../components/WalletHeader'
+
 
 const wallet = () => {
   return (
-    <div>
-        <div className='flex justify-left'>
-            <Link href='/' className='text-center'>TOP</Link>
-        </div>
+    <div className='
+      flex
+      justify-left
+      w-full
+      h-screen
+      bg-gray-900'
+    >
+      <WalletHeader />
     </div>
   )
 }
