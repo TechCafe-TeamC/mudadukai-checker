@@ -6,10 +6,10 @@ import { motion } from 'framer-motion'
 const register = () => {
   return (
     <motion.div
-      initial={{ x: 1000 }}
+      initial={{ x: 2000 }}
       animate={{ x: 0 }}
-      exit={{ x: -1000 }}
-      transition={{ ease: "easeOut", duration: 0.3 }}
+      exit={{ x: -2000 }}
+      transition={{ ease: "easeOut", duration: 0.4 }}
     >
       <div>
         <div className='
@@ -17,23 +17,30 @@ const register = () => {
           justify-left'
         >
           {/* トップページへ */}
-          <Link href='/' 
-            className='
+          <Link href='/' className='
             bg-gray-800
-              m-5
-              p-3
+            m-5
+            rounded-full
+            border-gray
+            origin-shadow
+            flex
+            justify-center'
+          >
+            <div
+              className='
+              bg-gray-800
               w-16
               h-16
-              rounded-full
+              p-3
               border-gold
-              flex
-              justify-center'
-          >
-            <Icon.House
+              rounded-full' 
+            >
+              <Icon.House
               size='32'
               className='
                 text-gold'
-            />
+              />
+            </div>
           </Link>
         </div>
         This is register page

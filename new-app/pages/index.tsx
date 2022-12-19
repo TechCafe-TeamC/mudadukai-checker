@@ -7,10 +7,10 @@ import { motion } from 'framer-motion'
 const Home: NextPage = () => {
   return (
     <motion.div
-      initial={{ x: 1000 }}
+      initial={{ x: 2000 }}
       animate={{ x: 0 }}
-      exit={{ x: -1000 }}
-      transition={{ ease: "easeOut", duration: 0.3 }}
+      exit={{ x: -2000 }}
+      transition={{ ease: "easeOut", duration: 0.4 }}
     >
       <div className='
         flex
