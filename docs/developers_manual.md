@@ -28,6 +28,9 @@ yarn add react-bootstrap react-bootstrap-icons
 
 # Firebaseインストール
 yarn add firebase react-firebase-hooks
+
+# emotionインストール
+yarn add @emotion/react @emotion/styled
 ```
 
 # サーバー起動
