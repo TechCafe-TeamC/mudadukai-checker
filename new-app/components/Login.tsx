@@ -2,7 +2,6 @@ import { signInWithPopup } from 'firebase/auth'
 import React from 'react'
 import { auth, provider } from '../hooks/firebase'
 import { useAuthState } from "react-firebase-hooks/auth"
-import Image from 'next/image'
 
 const Login = () => {
   const [user] = useAuthState(auth)
@@ -14,45 +13,17 @@ const Login = () => {
           <UserInfo />
           <div>
             <LogOutButton />
-          <div className='
-              bg-gray-800
-              rounded-full
-              mx-auto
-              w-52
-              border-gray2
-              origin-shadow'
-          >
-            <div className='
-                bg-gray-800
-                rounded-full
-                border-gold
-                text-gold
-                text-xl
-                py-3'
-            >
-              <LogOutButton />
-            </div>
           </div>
         </div>
       ) : (
         <div className='
-            bg-gray-800
-            rounded-full
-            mx-auto
-            w-52
-            border-gray2
-            origin-shadow'
+        text-gold
+        text-xl
+        py-3
+        hover:text-white
+        hover:font-bold'
         >
-          <div className='
-              bg-gray-800
-              rounded-full
-              border-gold
-              text-gold
-              text-xl
-              py-3'
-          >
-            <LogInButton />
-          </div>
+          <LogInButton />
         </div>
       )}
     </div>
@@ -77,15 +48,15 @@ const LogOutButton = () => {
     </button>
   )
 }
-// ログイン
 const LogInButton = () => {
   const LogInWithGoogle = () => {
     // firebase google login
     signInWithPopup(auth, provider)
+
   }
   return (
     <button onClick={LogInWithGoogle}>
-      Googleでログイン
+      Googleでサインイン
     </button>
   )
 }
