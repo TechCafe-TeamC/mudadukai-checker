@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { signInWithPopup } from 'firebase/auth'
 import React from 'react'
 import { auth, provider } from '../hooks/firebase'
@@ -58,24 +59,6 @@ const Login = () => {
 
 export default Login
 
-// ユーザーアイコン表示
-const UserInfo = () => {
-  return (
-    <div className='flex justify-center rounded-full'>
-      <img src={auth.currentUser.photoURL! as string} alt="" />
-    </div>
-  )
-}
-
-// ログアウト
-const LogOutButton = () => {
-  return (
-    <button onClick={() => auth.signOut()} >
-      ログアウト
-    </button>
-  )
-}
-
 // ログイン
 const LogInButton = () => {
   const LogInWithGoogle = () => {
@@ -85,6 +68,24 @@ const LogInButton = () => {
   return (
     <button onClick={LogInWithGoogle}>
       Googleでログイン
+    </button>
+  )
+}
+
+// ユーザーアイコン表示
+const UserInfo = () => {
+  return (
+    <div className='flex justify-center rounded-full'>
+      <img src={auth.currentUser?.photoURL! as string} alt="" />
+    </div>
+  )
+}
+
+// ログアウト
+const LogOutButton = () => {
+  return (
+    <button onClick={() => auth.signOut()} >
+      ログアウト
     </button>
   )
 }
