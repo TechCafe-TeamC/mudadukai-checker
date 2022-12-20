@@ -12,6 +12,8 @@ const Login = () => {
       {user ? (
         <div>
           <UserInfo />
+          <div>
+            <LogOutButton />
           <div className='
               bg-gray-800
               rounded-full
@@ -75,7 +77,6 @@ const LogOutButton = () => {
     </button>
   )
 }
-
 // ログイン
 const LogInButton = () => {
   const LogInWithGoogle = () => {
