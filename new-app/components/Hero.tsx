@@ -16,23 +16,7 @@ const Hero = () => {
             >HELLO WORLD</h1>
         </Link>
         
-        <div className='
-            bg-gray-800
-            rounded-full
-            mx-auto
-            w-[200px]
-            border-gray2
-            origin-shadow'
-        >
-            <div className='
-                bg-gray-800
-                rounded-full
-                py-5
-                border-gold'
-            >
-                <Login />
-            </div>
-        </div>
+        <Login />
         <Link href='/wallet'>
             <p className='
                 text-gold
