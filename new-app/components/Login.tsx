@@ -59,7 +59,9 @@ const Login = () => {
 
 export default Login
 
+
 // ログイン
+
 const LogInButton = () => {
   const LogInWithGoogle = () => {
     // firebase google login
