@@ -8,7 +8,8 @@ function MyApp({ Component, pageProps, router }: AppProps) {
       w-full
       h-screen
       bg-gray-900
-      overflow-hidden'
+      overflow-hidden
+      font-kaisei'
     >
       <AnimatePresence exitBeforeEnter>
         <Component {...pageProps} key={router.route} />

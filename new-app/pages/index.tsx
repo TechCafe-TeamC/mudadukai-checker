@@ -1,8 +1,8 @@
 import type { NextPage } from 'next'
 import Link from 'next/link'
 import React from 'react'
-import Hero from '../components/Hero'
 import { motion } from 'framer-motion'
+import Hero from '../components/Hero'
 
 const Home: NextPage = () => {
   return (
@@ -17,16 +17,7 @@ const Home: NextPage = () => {
         justify-center
         items-center'
       >
-        <Link href='/wallet'
-          className='
-            w-full
-            h-screen'
-        ></Link>
-        <div className='
-          absolute'
-        >
-          <Hero />
-        </div>
+        <Hero />
       </div>
     </motion.div>
   )
