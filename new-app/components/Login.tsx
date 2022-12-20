@@ -2,7 +2,6 @@ import { signInWithPopup } from 'firebase/auth'
 import React from 'react'
 import { auth, provider } from '../hooks/firebase'
 import { useAuthState } from "react-firebase-hooks/auth"
-import Image from 'next/image'
 
 const Login = () => {
   const [user] = useAuthState(auth)
@@ -62,7 +61,8 @@ export default Login
 // ユーザーアイコン表示
 const UserInfo = () => {
   return (
-    <div>
+    <div className='flex justify-center rounded-full'>
+      <img src={auth.currentUser.photoURL! as string} alt="" />
     </div>
   )
 }
