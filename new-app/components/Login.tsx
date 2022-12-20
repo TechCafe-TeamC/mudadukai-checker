@@ -12,7 +12,7 @@ const Login = () => {
         <div>
           <UserInfo />
           <div>
-            <SignOutButton />
+            <LogOutButton />
           </div>
         </div>
       ) : (
@@ -32,10 +32,22 @@ const Login = () => {
 
 export default Login
 
+// ユーザーアイコン表示
 const UserInfo = () => {
-  
+  return (
+    <div>
+    </div>
+  )
 }
 
+// ログアウト
+const LogOutButton = () => {
+  return (
+    <button onClick={() => auth.signOut()} >
+      ログアウト
+    </button>
+  )
+}
 const LogInButton = () => {
   const LogInWithGoogle = () => {
     // firebase google login
