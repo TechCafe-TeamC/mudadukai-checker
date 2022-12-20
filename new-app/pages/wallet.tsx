@@ -6,10 +6,10 @@ import { motion } from 'framer-motion'
 const wallet = () => {
   return (
     <motion.div
-      initial={{ x: 2000 }}
-      animate={{ x: 0 }}
-      exit={{ x: -2000 }}
-      transition={{ ease: "easeOut", duration: 0.4 }}
+      initial={{ y: 1000,opacity:0.5 }}
+      animate={{ y: 0,opacity:1 }}
+      exit={{ y: 1000,opacity:0.5 }}
+      transition={{ ease: "easeInOut", duration: 0.4 }}
     >
       <div className='
         flex

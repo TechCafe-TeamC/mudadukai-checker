@@ -36,7 +36,7 @@ const WalletNav = () => {
             </div>
         </Link>
         {/* カレンダーの表示 */}
-        <div className='
+        <Link href='/' className='
             bg-gray-800
             m-5
             rounded-full
@@ -45,8 +45,7 @@ const WalletNav = () => {
             flex
             justify-center'
         >
-            <Link href='/' 
-                className='
+            <div className='
                 bg-gray-800
                 p-[14px]
                 w-16
@@ -59,8 +58,8 @@ const WalletNav = () => {
                 className='
                     text-gold'
                 />
-            </Link>
-        </div>
+            </div>
+        </Link>
     </div>
   )
 }
