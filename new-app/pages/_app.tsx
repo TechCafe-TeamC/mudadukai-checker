@@ -11,8 +11,8 @@ function MyApp({ Component, pageProps, router }: AppProps) {
       overflow-hidden
       font-kaisei'
     >
-      <AnimatePresence exitBeforeEnter>
-        <Component {...pageProps} key={router.route} />
+      <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
+        <Component {...pageProps} key={router.asPath} />
       </AnimatePresence>
     </div>
   )
