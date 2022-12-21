@@ -37,16 +37,11 @@ export const FileInput = () => {
         for (let i = 1; i < textAnnotations.length; i++) {
             // ¥が入っていないものはスキップ
             if (!correctYenMark(textAnnotations[i].description).match(/\¥/)) {
-                // console.log(textAnnotations[i].description);
                 continue
             }
-            // console.log(1);
-
             const textLowerHeight = textAnnotations[i].boundingPoly.vertices[3].y
             // 合より下のものを補足する
             if (textLowerHeight >= goukeiHeight) {
-                // console.log(parseAmount(textAnnotations, i));
-
                 return parseAmount(textAnnotations, i)
             }
         }
