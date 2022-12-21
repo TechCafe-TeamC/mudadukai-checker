@@ -31,6 +31,9 @@ yarn add firebase react-firebase-hooks
 
 # emotionインストール
 yarn add @emotion/react @emotion/styled
+
+# fullcalendarインストール
+$ yarn add @fullcalendar/react @fullcalendar/core @fullcalendar/daygrid @fullcalendar/timegrid @fullcalendar/list
 ```
 
 # サーバー起動
