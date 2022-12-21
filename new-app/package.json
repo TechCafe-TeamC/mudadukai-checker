@@ -9,6 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@fullcalendar/core": "^6.0.0",
+    "@fullcalendar/daygrid": "^6.0.0",
+    "@fullcalendar/list": "^6.0.0",
+    "@fullcalendar/react": "^6.0.0",
+    "@fullcalendar/timegrid": "^6.0.0",
     "firebase": "^9.15.0",
     "framer-motion": "^7.10.2",
     "next": "13.0.7",
