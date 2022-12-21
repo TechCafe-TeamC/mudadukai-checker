@@ -27,7 +27,7 @@ export const FileInput = () => {
             const result: string = base64.replace(/^data:image\/(png|jpeg);base64,/, '')
             const a = sendVisionAPI(result)
                 .then(result => {
-                    console.log(result.responses[0].textAnnotations[0].description);
+                    console.log(result.responses[0]);
                 })
         }
     }
