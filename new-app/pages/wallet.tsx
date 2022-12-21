@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState } from 'react'
 import WalletNav from '../components/WalletNav'
 import { motion } from 'framer-motion'

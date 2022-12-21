@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { motion } from 'framer-motion'
 
 type Props = {
     showModal: boolean
@@ -13,6 +14,12 @@ export const ShowModal = ({ showModal, OpenModal, CloseModal, title, children }:
         <>
             {showModal ? (
                 <>
+                    <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ ease: "easeInOut", duration: 0.4 }}
+                    >
                     <div className="center z-50">
                         <div className="relative mx-auto w-[500px] border-gray2 origin-shadow rounded-3xl bg-gray-800">
                             {/*content*/}
@@ -33,6 +40,7 @@ export const ShowModal = ({ showModal, OpenModal, CloseModal, title, children }:
                     <div className="opacity-30 fixed inset-0 z-40 bg-gray-900"
                         onClick={CloseModal}
                     ></div>
+                    </motion.div>
                 </>
             ) : null}
         </>
