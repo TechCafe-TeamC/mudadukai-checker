@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState } from 'react'
 import WalletNav from '../components/WalletNav'
 import { motion } from 'framer-motion'
@@ -8,6 +9,8 @@ import styled from "@emotion/styled"
 import { Button, Modal } from 'react-bootstrap'
 import { ShowModal } from '../components/ShowModal'
 import { FileInput } from '../components/FileInput'
+import * as Icon from 'react-bootstrap-icons'
+import Link from 'next/link'
 
 const wallet = () => {
   const [showModal, setshowModal] = useState<boolean>(false)
@@ -26,11 +29,43 @@ const wallet = () => {
 
       <div className='
         flex
-        justify-left
+        justify-right
         w-full
         h-screen'
       >
-
+        <div className='
+          absolute
+          left-5
+          top-5'
+        >
+          {/* トップページへ */}
+          <Link href='/' className='
+          bg-gray-800
+          m-5
+          rounded-full
+          border-gray
+          origin-shadow
+          flex
+          justify-center'
+          >
+              <div
+                  className='
+              bg-gray-800
+              w-16
+              h-16
+              p-3
+              border-gold
+              rounded-full'
+              >
+                  <Icon.House
+                      size='32'
+                      className='
+                  text-gold'
+                  />
+              </div>
+          </Link>
+        </div>
+        {/* 下部のナビゲーション */}
         <WalletNav OnClick={OpenModal} />
       </div>
       {/* <StyleWrapper>
@@ -45,34 +80,58 @@ const wallet = () => {
         showModal={showModal}
         OpenModal={OpenModal}
         CloseModal={CloseModal}
-        title="無駄遣いCalendar"
+        title="無駄遣いチェッカー"
       >
-        {/* <StyleWrapper> */}
+        <StyleWrapper>
           <FullCalendar
             plugins={[dayGridPlugin]}
+            contentHeight='420px'
+            headerToolbar={{left:'', center:'title', right:''}}
             initialView="dayGridMonth"
-            locales={[jaLocale]}
             locale="ja"
           />
-        {/* </StyleWrapper> */}
+        </StyleWrapper>
       </ShowModal>
     </motion.div >
   )
 }
 
 const StyleWrapper = styled.div`
-*{
-  color:white
+.fc-toolbar {
+  color: rgb(212,175,55);
+  background: rgb(31 41 55);
+  border: none;
 }
-.fc {
-  background:black
+.fc-scrollgrid {
+  border: none;
+  font-size: 0.9rem;
 }
-td{
-  background:black
+.fc-theme-standard th{
+  height: 10px;
+  border: none;
 }
-
-.fc-day-today{
-  background-color:red !important
+.fc-theme-standard td {
+  border: none;
+  background: rgb(17,24,39);
+  overflow:hidden;
+}
+.fc .fc-daygrid-day.fc-day-today {
+  background: rgb(17,24,39);
+}
+.fc .fc-daygrid-day.fc-day-today .fc-daygrid-day-frame {
+  background: rgb(17,24,39);
+  outline: 3px solid white;
+  outline-offset: -3px;
+}
+.fc .fc-daygrid-day-frame {
+  height: 100%;
+}
+.fc .fc-daygrid-day-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 100%;
 }
 `
 
