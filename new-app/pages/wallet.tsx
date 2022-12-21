@@ -6,7 +6,7 @@ import dayGridPlugin from "@fullcalendar/daygrid"
 import jaLocale from "@fullcalendar/core/locales/ja"
 import styled from "@emotion/styled"
 import { Button, Modal } from 'react-bootstrap'
-import { ShowModal } from '../components/SHowModal'
+import { ShowModal } from '../components/ShowModal'
 
 const wallet = () => {
   const [showModal, setshowModal] = useState<boolean>(false)
@@ -44,8 +44,16 @@ const wallet = () => {
         OpenModal={OpenModal}
         CloseModal={CloseModal}
         title="無駄遣いCalendar"
-
-      >aaaa</ShowModal>
+      >
+        {/* <StyleWrapper> */}
+          <FullCalendar
+            plugins={[dayGridPlugin]}
+            initialView="dayGridMonth"
+            locales={[jaLocale]}
+            locale="ja"
+          />
+        {/* </StyleWrapper> */}
+      </ShowModal>
     </motion.div >
   )
 }
