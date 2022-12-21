@@ -8,6 +8,7 @@ import jaLocale from "@fullcalendar/core/locales/ja"
 import styled from "@emotion/styled"
 import { Button, Modal } from 'react-bootstrap'
 import { ShowModal } from '../components/ShowModal'
+import { FileInput } from '../components/FileInput'
 import * as Icon from 'react-bootstrap-icons'
 import Link from 'next/link'
 
@@ -24,6 +25,7 @@ const wallet = () => {
       exit={{ y: 1000, opacity: 0.5 }}
       transition={{ ease: "easeInOut", duration: 0.4 }}
     >
+      <FileInput/>
 
       <div className='
         flex
