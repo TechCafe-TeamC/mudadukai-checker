@@ -8,6 +8,8 @@ import jaLocale from "@fullcalendar/core/locales/ja"
 import styled from "@emotion/styled"
 import { Button, Modal } from 'react-bootstrap'
 import { ShowModal } from '../components/ShowModal'
+import * as Icon from 'react-bootstrap-icons'
+import Link from 'next/link'
 
 const wallet = () => {
   const [showModal, setshowModal] = useState<boolean>(false)
@@ -25,11 +27,43 @@ const wallet = () => {
 
       <div className='
         flex
-        justify-left
+        justify-right
         w-full
         h-screen'
       >
-
+        <div className='
+          absolute
+          left-5
+          top-5'
+        >
+          {/* トップページへ */}
+          <Link href='/' className='
+          bg-gray-800
+          m-5
+          rounded-full
+          border-gray
+          origin-shadow
+          flex
+          justify-center'
+          >
+              <div
+                  className='
+              bg-gray-800
+              w-16
+              h-16
+              p-3
+              border-gold
+              rounded-full'
+              >
+                  <Icon.House
+                      size='32'
+                      className='
+                  text-gold'
+                  />
+              </div>
+          </Link>
+        </div>
+        {/* 下部のナビゲーション */}
         <WalletNav OnClick={OpenModal} />
       </div>
       {/* <StyleWrapper>
