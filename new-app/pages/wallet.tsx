@@ -43,34 +43,58 @@ const wallet = () => {
         showModal={showModal}
         OpenModal={OpenModal}
         CloseModal={CloseModal}
-        title="無駄遣いCalendar"
+        title="無駄遣いカレンダー"
       >
-        {/* <StyleWrapper> */}
+        <StyleWrapper>
           <FullCalendar
             plugins={[dayGridPlugin]}
+            contentHeight='420px'
+            headerToolbar={{left:'', center:'title', right:''}}
             initialView="dayGridMonth"
-            locales={[jaLocale]}
             locale="ja"
           />
-        {/* </StyleWrapper> */}
+        </StyleWrapper>
       </ShowModal>
     </motion.div >
   )
 }
 
 const StyleWrapper = styled.div`
-*{
-  color:white
+.fc-toolbar {
+  color: rgb(212,175,55);
+  background: rgb(31 41 55);
+  border: none;
 }
-.fc {
-  background:black
+.fc-scrollgrid {
+  border: none;
+  font-size: 0.9rem;
 }
-td{
-  background:black
+.fc-theme-standard th{
+  height: 10px;
+  border: none;
 }
-
-.fc-day-today{
-  background-color:red !important
+.fc-theme-standard td {
+  border: none;
+  background: rgb(17,24,39);
+  overflow:hidden;
+}
+.fc .fc-daygrid-day.fc-day-today {
+  background: rgb(17,24,39);
+}
+.fc .fc-daygrid-day.fc-day-today .fc-daygrid-day-frame {
+  background: rgb(17,24,39);
+  outline: 3px solid white;
+  outline-offset: -3px;
+}
+.fc .fc-daygrid-day-frame {
+  height: 100%;
+}
+.fc .fc-daygrid-day-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 100%;
 }
 `
 
