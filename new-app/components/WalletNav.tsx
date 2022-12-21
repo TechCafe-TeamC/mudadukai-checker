@@ -2,46 +2,98 @@ import Link from 'next/link'
 import * as Icon from 'react-bootstrap-icons'
 import React from 'react'
 import { type } from 'os'
+import { useState, useEffect } from 'react'
 
 type Props = {
     OnClick: () => void
 }
 
 const WalletNav = ({ OnClick }: Props) => {
-
+    const [image, setImage] = useState<HTMLInputElement>()
+    
+    const imageChange = (e) => {
+        if (e.target.files && e.target.files.length > 0) {
+            setImage(e.target.files[0])
+            console.log(image)
+        }
+    }
 
     return (
         <div className='
-      flex-col absolute right-5 top-5'
+            flex justify-between items-end mx-auto mb-16'
         >
-            {/* トップページへ */}
-            <Link href='/' className='
-            bg-gray-800
-            m-5
-            rounded-full
-            border-gray
-            origin-shadow
-            flex
-            justify-center'
+            {/* 画像をフォルダーから選択 */}
+            <label htmlFor='folderSelect'
+                className='
+                    bg-gray-800
+                    m-5
+                    rounded-full
+                    border-gray
+                    origin-shadow
+                    flex
+                    justify-center
+                    cursor-pointer'
             >
-                <div
-                    className='
+                <input
+                    type='file'
+                    id='folderSelect'
+                    className='hidden'
+                    accept='image/*'
+                    onChange={imageChange}
+                />
+                <div className='
                 bg-gray-800
+                p-[13px]
                 w-16
                 h-16
-                p-3
-                border-gold
-                rounded-full'
+                rounded-full
+                border-gold'
                 >
-                    <Icon.House
-                        size='32'
+                    <Icon.Folder
+                        size='33'
                         className='
-                    text-gold'
+                        text-gold'
                     />
                 </div>
-            </Link>
+            </label>
+
+            {/* 写真撮影 */}
+            <label htmlFor='camera'
+                className='
+                    bg-gray-800
+                    m-5
+                    rounded-full
+                    border-gray
+                    origin-shadow
+                    flex
+                    justify-center
+                    cursor-pointer'
+            >
+                <input
+                    id='camera'
+                    type="file"
+                    accept='image/*;capture=camera'
+                    className='hidden'
+                />
+                <div className='
+                bg-gray-800
+                p-[11px]
+                w-16
+                h-16
+                rounded-full
+                border-gold'
+                >
+                    <Icon.CameraFill
+                        size='35'
+                        className='
+                        text-gold'
+                    />
+                </div>
+            </label>
+            <button>
+            </button>
+
             {/* カレンダーの表示 */}
-            {/* <Link href='/' */}
             <button onClick={OnClick}
                 className='
             bg-gray-800
