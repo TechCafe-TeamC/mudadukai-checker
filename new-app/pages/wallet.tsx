@@ -25,8 +25,6 @@ const wallet = () => {
       exit={{ y: 1000, opacity: 0.5 }}
       transition={{ ease: "easeInOut", duration: 0.4 }}
     >
-      <FileInput/>
-
       <div className='
         flex
         justify-right

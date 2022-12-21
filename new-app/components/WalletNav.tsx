@@ -3,6 +3,7 @@ import * as Icon from 'react-bootstrap-icons'
 import React from 'react'
 import { type } from 'os'
 import { useState, useEffect } from 'react'
+import { FileInput } from './FileInput'
 
 type Props = {
     OnClick: () => void
@@ -11,11 +12,11 @@ type Props = {
 const WalletNav = ({ OnClick }: Props) => {
     const [image, setImage] = useState<HTMLInputElement>()
     
-    const imageChange = (e) => {
-        if (e.target.files && e.target.files.length > 0) {
-            setImage(e.target.files[0])
-            console.log(image)
-        }
+    const imageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!e.target.files) return
+        const currentImage = e.target.files[0]
+        console.log(currentImage)
+
     }
 
     return (
@@ -23,7 +24,7 @@ const WalletNav = ({ OnClick }: Props) => {
             flex justify-between items-end mx-auto mb-16'
         >
             {/* 画像をフォルダーから選択 */}
-            <label htmlFor='folderSelect'
+            <label htmlFor='ImageSelect'
                 className='
                     bg-gray-800
                     m-5
@@ -34,12 +35,15 @@ const WalletNav = ({ OnClick }: Props) => {
                     justify-center
                     cursor-pointer'
             >
+                {/* 完成後にVisionAI呼ぶ */}
+                {/* <FileInput/> */}
                 <input
-                    type='file'
-                    id='folderSelect'
-                    className='hidden'
+                    id='ImageSelect'
+                    type="file"
                     accept='image/*'
+                    className='hidden'
                     onChange={imageChange}
+                    
                 />
                 <div className='
                 bg-gray-800
@@ -69,8 +73,10 @@ const WalletNav = ({ OnClick }: Props) => {
                     justify-center
                     cursor-pointer'
             >
+                {/* 完成後にVisionAI呼ぶ */}
+                {/* <FileInput/> */}
                 <input
-                    id='camera'
+                    id='ImageSelect'
                     type="file"
                     accept='image/*;capture=camera'
                     className='hidden'

@@ -90,7 +90,13 @@ export const FileInput = () => {
 
     return (
         <div>
-            <input type="file" accept='image/*' onChange={handleFiles} />
+            <input
+                id='ImageSelect'
+                type="file"
+                accept='image/*'
+                onChange={handleFiles}
+                className='hidden'
+            />
         </div>
     )
 }
