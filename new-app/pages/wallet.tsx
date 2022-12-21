@@ -1,30 +1,22 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState } from 'react'
 import WalletNav from '../components/WalletNav'
-import { motion } from 'framer-motion'
 import FullCalendar from "@fullcalendar/react"
 import dayGridPlugin from "@fullcalendar/daygrid"
-import jaLocale from "@fullcalendar/core/locales/ja"
 import styled from "@emotion/styled"
-import { Button, Modal } from 'react-bootstrap'
 import { ShowModal } from '../components/ShowModal'
 import { FileInput } from '../components/FileInput'
 import * as Icon from 'react-bootstrap-icons'
 import Link from 'next/link'
+import Layout from '../components/Layout'
 
 const wallet = () => {
   const [showModal, setshowModal] = useState<boolean>(false)
   const OpenModal = () => setshowModal(true)
   const CloseModal = () => setshowModal(false)
 
-
   return (
-    <motion.div
-      initial={{ y: 1000, opacity: 0.5 }}
-      animate={{ y: 0, opacity: 1 }}
-      exit={{ y: 1000, opacity: 0.5 }}
-      transition={{ ease: "easeInOut", duration: 0.4 }}
-    >
+    <Layout>
       <FileInput/>
 
       <div className='
@@ -92,7 +84,7 @@ const wallet = () => {
           />
         </StyleWrapper>
       </ShowModal>
-    </motion.div >
+    </Layout>
   )
 }
 
