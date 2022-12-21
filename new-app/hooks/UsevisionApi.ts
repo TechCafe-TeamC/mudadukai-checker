@@ -5,7 +5,7 @@ const url = `https://vision.googleapis.com/v1/images:annotate`;
 const sendVisionAPI = async (base64string: string) => {
     let body = {
         requests: [
-            { image: { content: base64string }, features: [{ type: 'TEXT_DETECTION' }] }
+            { image: { content: base64string }, features: [{ type: 'DOCUMENT_TEXT_DETECTION' }] }
         ]
     };
     const response = await fetch(
