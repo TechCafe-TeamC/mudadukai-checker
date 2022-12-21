@@ -5,18 +5,69 @@ export const FileInput = () => {
 
     const [file, setfile] = useState<HTMLInputElement>()
 
-    // const readFile = (file:File) => {
-    //     let reader = new FileReader();
-    //     const p = new Promise((resolve, reject) => {
-    //         reader.onload = (ev) => {
-    //             // document.querySelector('img').setAttribute('src', ev.target.result);
-    //             resolve(ev!.target!.result!.replace(/^data:image\/(png|jpeg);base64,/, ''));
-    //         };
-    //     })
+    // ¥マークの誤認識を修正する
+    const correctYenMark = (text: string) => {
+        const correct = text
+            .replace(/半/g, "¥")
+            .replace(/ギ/g, "¥")
+            .replace(/羊/g, "¥")
+            .replace(/ /g, "¥")
+        return correct
+    }
 
-    //     reader.readAsDataURL(file);
-    //     return p;
-    // };
+    // キーワードの位置（y）を返す
+    const detectKeyWordHeight = (textAnnotations: any, keyWord: any) => {
+        let regExp = new RegExp(keyWord)
+        for (let i = 1; i < textAnnotations.length; i++) {
+            const text = textAnnotations[i].description;
+            if (text.match(regExp)) {
+                const KWUpperHeight = textAnnotations[i].boundingPoly.vertices[0].y;
+                const KWLowerHeight = textAnnotations[i].boundingPoly.vertices[3].y;
+                const KWHeight = (KWUpperHeight + KWLowerHeight) / 2
+                return KWHeight;
+            }
+        }
+        console.error("Fail to detect " + keyWord);
+        return false;
+    }
+    // 「合」と同じ行 or すぐ下にある ¥ 入りの文字列を見つける
+    const findAmountByGoukei = (textAnnotations: any) => {
+        const goukeiHeight = detectKeyWordHeight(textAnnotations, "合")
+
+        for (let i = 1; i < textAnnotations.length; i++) {
+            // ¥が入っていないものはスキップ
+            if (!correctYenMark(textAnnotations[i].description).match(/\¥/)) {
+                // console.log(textAnnotations[i].description);
+                continue
+            }
+            // console.log(1);
+
+            const textLowerHeight = textAnnotations[i].boundingPoly.vertices[3].y
+            // 合より下のものを補足する
+            if (textLowerHeight >= goukeiHeight) {
+                // console.log(parseAmount(textAnnotations, i));
+
+                return parseAmount(textAnnotations, i)
+            }
+        }
+
+    }
+
+    // 金額の数字を抽出する
+    function parseAmount(textAnnotations: any, i: number) {
+        var text = correctYenMark(textAnnotations[i].description);
+        // ¥ だけのものはその後の数字と分離してしまっているため、一つ後ろのものを採用する
+        if (text === "¥") {
+            text = correctYenMark(textAnnotations[i + 1].description);
+        }
+        // カンマで終わっているものはそこで金額が途切れてしまっている可能性があるので、一つ後ろと連結する
+        var count = 1;
+        while (text.match(/,$/)) {
+            text += textAnnotations[i + count].description;
+            count += 1;
+        }
+        return parseInt(text.replace(",", "").replace("¥", ""));
+    }
 
     const convertToBase64 = (file: File) => {
         const reader = new FileReader()
@@ -27,7 +78,10 @@ export const FileInput = () => {
             const result: string = base64.replace(/^data:image\/(png|jpeg);base64,/, '')
             const a = sendVisionAPI(result)
                 .then(result => {
-                    console.log(result.responses[0]);
+                    // console.log(result.responses[0].textAnnotations[0].description);
+                    const a = findAmountByGoukei(result.responses[0].textAnnotations)
+                    console.log(a);
+
                 })
         }
     }
