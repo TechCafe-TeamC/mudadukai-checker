@@ -44,7 +44,7 @@ const wallet = () => {
         showModal={showModal}
         OpenModal={OpenModal}
         CloseModal={CloseModal}
-        title="無駄遣いカレンダー"
+        title="無駄遣いチェッカー"
       >
         <StyleWrapper>
           <FullCalendar
