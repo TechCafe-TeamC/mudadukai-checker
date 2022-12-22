@@ -21,15 +21,6 @@ const wallet = () => {
   const {fbUser, isLoading} = useAuth()
   const router = useRouter()
 
-  if (isLoading) {
-    return null
-  }
-  
-  if (!fbUser) {
-    router.push("/")
-    return null
-  }
-
   const [showModal, setshowModal] = useState<boolean>(false)
   const OpenModal = () => setshowModal(true)
   const CloseModal = () => setshowModal(false)
@@ -55,6 +46,15 @@ const wallet = () => {
 
   const Money = 3278
   console.log(useTotalToCoin(Money));
+
+  if (isLoading) {
+    return null
+  }
+  
+  if (!fbUser) {
+    router.push("/")
+    return null
+  }
 
   return (
     <>
