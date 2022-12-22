@@ -13,8 +13,23 @@ import { Mesh } from "three"
 import { ShowFallYen } from '../components/ShowFallYen'
 import { ModalConfirm } from '../components/ModalConfirm'
 import useTotalToCoin from '../hooks/useTotalToCoin'
+import { useAuth } from '../context/auth'
+import { useRouter } from 'next/router'
 
 const wallet = () => {
+  // ログインしていなければルートディレクトリに飛ばす処理
+  const {fbUser, isLoading} = useAuth()
+  const router = useRouter()
+
+  if (isLoading) {
+    return null
+  }
+  
+  if (!fbUser) {
+    router.push("/")
+    return null
+  }
+
   const [showModal, setshowModal] = useState<boolean>(false)
   const OpenModal = () => setshowModal(true)
   const CloseModal = () => setshowModal(false)
