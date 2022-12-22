@@ -14,7 +14,7 @@ export const Yen500 = memo(({ posX }: Props) => {
   const [ref] = useBox(() => ({
     mass: 0.5,
     args: [2.3, 2.3, 0.1],
-    position: [posX, 20, 0],
+    position: [posX, 25, 0],
     rotation: [0, 0, 0],
 
   }))
