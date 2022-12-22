@@ -41,6 +41,9 @@ yarn add -D @types/three
 
 # three/cannonインストール
 yarn add @react-three/cannon
+
+# Node.jsとFirebaseを繋げるSDKをインストール
+yarn add firebase-admin --save
 ```
 
 # サーバー起動
