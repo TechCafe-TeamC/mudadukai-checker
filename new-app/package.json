@@ -16,6 +16,7 @@
     "@fullcalendar/list": "^6.0.1",
     "@fullcalendar/react": "^6.0.1",
     "@fullcalendar/timegrid": "^6.0.1",
+    "@react-three/cannon": "^6.5.0",
     "@react-three/drei": "^9.47.1",
     "@react-three/fiber": "^8.9.1",
     "firebase": "^9.15.0",
