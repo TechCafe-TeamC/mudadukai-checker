@@ -33,7 +33,7 @@ const wallet = () => {
   // 画像ファイルの情報
   const [imageConfirm, setimageConfirm] = useState<File>()
   const [insertMoney, setinsertMoney] = useState<number>(0)
-  const [insertCoin, setinsertCoin] = useState<number[]>([5,5,3,4,4,7]) // 入れた金額コイン
+  const [insertCoin, setinsertCoin] = useState<number[]>([8,10,3,4,4,7]) // 入れた金額コイン
 
   const OnOpenComfirm = (file: File, total: number) => { // モーダル開くのとファイルにデータ入れるの同時に行う
     OpenConfirm()

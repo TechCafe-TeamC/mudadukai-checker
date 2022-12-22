@@ -23,6 +23,6 @@ export const Yen500 = memo(({ posX, fileid }: Props) => {
   let fbxClone = fbx.clone()
 
   return (
-    <primitive object={fbxClone} ref={ref} scale={0.1} />
+    <primitive object={fbxClone} ref={ref} scale={0.1}/>
   )
 })
