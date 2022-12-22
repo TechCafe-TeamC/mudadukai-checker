@@ -30,21 +30,27 @@ const wallet = () => {
   const CloseConfirm = () => setshowConfirm(false)
   // 画像ファイルの情報
   const [imageConfirm, setimageConfirm] = useState<File>()
-  const [total, settotal] = useState<number>(0)
+  const [insertMoner, setinsertMoney] = useState<number>(0)
+  const [insertCoin, setinsertCoin] = useState<number[]>() // 入れた金額コイン
+
   const OnOpenComfirm = (file: File, total: number) => { // モーダル開くのとファイルにデータ入れるの同時に行う
     OpenConfirm()
     setimageConfirm(file)
-    settotal(total)
+    setinsertMoney(total)
   }
 
   // モーダルの確定押した時の処理
   const BtnConfirm = () => {
     CloseConfirm()
-    // 送信系
+    setinsertCoin(useTotalToCoin(insertMoner)) // コインを表示させる
+
+    // 送信系書いてください
   }
 
-  const Money = 3278
-  console.log(useTotalToCoin(Money));
+  // const Money = 3278
+  // 入れた金額
+  console.log(insertCoin);
+
 
   // ログインしていなければルートディレクトリに飛ばす処理
   if (isLoading) {
@@ -74,7 +80,7 @@ const wallet = () => {
             h-screen
             z-[-1]'
           >
-            <ShowFallYen />
+            <ShowFallYen coin={insertCoin!} />
           </div>
           <div className='
           absolute
@@ -143,7 +149,7 @@ const wallet = () => {
           title="ご確認"
         >
           <StyleWrapper>
-            <ModalConfirm imageConfirm={imageConfirm!} total={total} BtnConfitm={BtnConfirm} />
+            <ModalConfirm imageConfirm={imageConfirm!} total={insertMoner} BtnConfitm={BtnConfirm} />
           </StyleWrapper>
         </ShowModal>
 
