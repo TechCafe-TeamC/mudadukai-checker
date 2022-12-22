@@ -12,6 +12,7 @@ import Layout2 from '../components/WalletLayout'
 import { Mesh } from "three"
 import { ShowFallYen } from '../components/ShowFallYen'
 import { ModalConfirm } from '../components/ModalConfirm'
+import useTotalToCoin from '../hooks/useTotalToCoin'
 
 const wallet = () => {
   const [showModal, setshowModal] = useState<boolean>(false)
@@ -31,6 +32,8 @@ const wallet = () => {
     settotal(total)
   }
 
+  const Money = 25432
+  console.log(useTotalToCoin(Money));
 
   return (
     <>
@@ -120,7 +123,7 @@ const wallet = () => {
         >
           <StyleWrapper>
             {/* @ts-ignore */}
-            <ModalConfirm imageConfirm={imageConfirm} total={ total} />
+            <ModalConfirm imageConfirm={imageConfirm} total={total} />
           </StyleWrapper>
         </ShowModal>
 
