@@ -5,9 +5,9 @@ import { Physics } from "@react-three/cannon"
 
 export const ShowFallYen = () => {
     return (
-        <Canvas className='w-full h-full absolute'
+        <Canvas className='w-full h-full absolute top-0 left-0'
             camera={{
-                position: [0, 0, 10]
+                position: [0, 0, 200]
             }}
         >
             <Physics>
