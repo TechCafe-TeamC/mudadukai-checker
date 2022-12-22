@@ -23,12 +23,12 @@ export const ShowFallYen = memo(({ coin }: Props) => {
                     coin ?
                         coin.map((e, i) =>
                             [...Array(e)].map((c, j) =>
-                                <Yen500 posX={Math.random() * 30 - 15} key={j + e * i} />
+                                <Yen500 posX={Math.random() * 30 - 15} key={j + e * i} fileid={j} />
                             ))
                         : <></>
                 }
             </Physics>
-            <ambientLight args={[0xffffff]} intensity={0.1} />
+            <ambientLight intensity={0.1} />
             <directionalLight position={[1, 20, -10]} intensity={1} castShadow />
 
         </Canvas >)

@@ -1,28 +1,27 @@
 /* eslint-disable react/display-name */
 import { useLoader } from "@react-three/fiber"
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader"
-import { TextureLoader } from "three/src/loaders/TextureLoader"
-import { useBox, usePlane } from "@react-three/cannon"
+import { useBox } from "@react-three/cannon"
 import { memo } from "react"
 
 type Props = {
   posX: number
+  fileid: number
 }
 
-export const Yen500 = memo(({ posX }: Props) => {
+const fbxs = ["./yen500.fbx", "./yen100.fbx", "./yen50.fbx", "./yen10.fbx", "./yen5.fbx", "./yen1.fbx",]
+export const Yen500 = memo(({ posX, fileid }: Props) => {
 
   const [ref] = useBox(() => ({
     mass: 0.5,
     args: [2.3, 2.3, 0.1],
     position: [posX, 20, 0],
     rotation: [0, 0, 0],
-
   }))
-  const fbx = useLoader(FBXLoader, "./money24.fbx")
+  const fbx = useLoader(FBXLoader, fbxs[fileid])
   let fbxClone = fbx.clone()
-  const map = useLoader(TextureLoader, "./5_10_Roughness.png")
 
   return (
-    <primitive object={fbxClone} map={map} ref={ref} scale={0.1}/>
+    <primitive object={fbxClone} ref={ref} scale={0.1} />
   )
 })
