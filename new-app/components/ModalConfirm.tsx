@@ -4,16 +4,17 @@ import { EOL } from 'os'
 type Props = {
     imageConfirm: File
     total: number
+    BtnConfitm: () => void
 }
 
-export const ModalConfirm = ({ imageConfirm, total }: Props) => {
+export const ModalConfirm = ({ imageConfirm, total, BtnConfitm }: Props) => {
     const coins: number[] = useTotalToCoin(total)
 
     return (
         <div className='text-center'>
             <img src={window.URL.createObjectURL(imageConfirm)} className="w-48 h-48 object-contain text-center"></img>
-            <button>確認</button>
-            
+            <button onClick={BtnConfitm}>確認</button>
+
             <p className='h-48 text-3xl'>
                 {"合計:" + total + "\n"}
                 <li>

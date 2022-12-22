@@ -32,6 +32,12 @@ const wallet = () => {
     settotal(total)
   }
 
+  // モーダルの確定押した時の処理
+  const BtnConfirm = () => {
+    CloseConfirm()
+    // 送信系
+  }
+
   const Money = 3278
   console.log(useTotalToCoin(Money));
 
@@ -122,8 +128,7 @@ const wallet = () => {
           title="ご確認"
         >
           <StyleWrapper>
-            {/* @ts-ignore */}
-            <ModalConfirm imageConfirm={imageConfirm} total={total} />
+            <ModalConfirm imageConfirm={imageConfirm!} total={total} BtnConfitm={BtnConfirm} />
           </StyleWrapper>
         </ShowModal>
 
