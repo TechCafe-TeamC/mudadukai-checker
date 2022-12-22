@@ -32,7 +32,7 @@ const wallet = () => {
   const CloseConfirm = () => setshowConfirm(false)
   // 画像ファイルの情報
   const [imageConfirm, setimageConfirm] = useState<File>()
-  const [insertMoner, setinsertMoney] = useState<number>(0)
+  const [insertMoney, setinsertMoney] = useState<number>(0)
   const [insertCoin, setinsertCoin] = useState<number[]>() // 入れた金額コイン
 
   const OnOpenComfirm = (file: File, total: number) => { // モーダル開くのとファイルにデータ入れるの同時に行う
@@ -163,7 +163,7 @@ const wallet = () => {
           title="ご確認"
         >
           <StyleWrapper>
-            <ModalConfirm imageConfirm={imageConfirm!} total={insertMoner} BtnConfitm={BtnConfirm} />
+            <ModalConfirm imageConfirm={imageConfirm!} total={insertMoney} BtnConfitm={BtnConfirm} />
           </StyleWrapper>
         </ShowModal>
 

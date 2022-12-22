@@ -21,6 +21,9 @@ export const FileInput = ({ onChange }: Props) => {
 
     // キーワードの位置（y）を返す
     const detectKeyWordHeight = (textAnnotations: any, keyWord: any) => {
+        if (textAnnotations == null) {
+            return false
+        }
         let regExp = new RegExp(keyWord)
         for (let i = 1; i < textAnnotations.length; i++) {
             const text = textAnnotations[i].description;
@@ -37,7 +40,7 @@ export const FileInput = ({ onChange }: Props) => {
     // 「合」と同じ行 or すぐ下にある ¥ 入りの文字列を見つける
     const findAmountByGoukei = (textAnnotations: any) => {
         const goukeiHeight = detectKeyWordHeight(textAnnotations, "合")
-
+        if (textAnnotations == null) return undefined
         for (let i = 1; i < textAnnotations.length; i++) {
             // ¥が入っていないものはスキップ
             if (!correctYenMark(textAnnotations[i].description).match(/\¥/)) {
@@ -78,10 +81,11 @@ export const FileInput = ({ onChange }: Props) => {
             const a = sendVisionAPI(result)
                 .then(result => {
                     // console.log(result.responses[0].textAnnotations[0].description);
-                    const amount = findAmountByGoukei(result.responses[0].textAnnotations) as number
+                    const amount = findAmountByGoukei(result.responses[0].textAnnotations)
                     // console.log(amount);
-                    onChange(file, amount)
-
+                    amount !== undefined
+                        ? onChange(file, amount!)
+                        : alert("レシートを読み込めませんでした。もう一度お試しください。")
                 })
         }
     }
