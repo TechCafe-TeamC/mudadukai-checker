@@ -17,18 +17,8 @@ import { useAuth } from '../context/auth'
 import { useRouter } from 'next/router'
 
 const wallet = () => {
-  // ログインしていなければルートディレクトリに飛ばす処理
   const {fbUser, isLoading} = useAuth()
   const router = useRouter()
-
-  if (isLoading) {
-    return null
-  }
-  
-  if (!fbUser) {
-    router.push("/")
-    return null
-  }
 
   const [showModal, setshowModal] = useState<boolean>(false)
   const OpenModal = () => setshowModal(true)
@@ -55,6 +45,16 @@ const wallet = () => {
 
   const Money = 3278
   console.log(useTotalToCoin(Money));
+
+  // ログインしていなければルートディレクトリに飛ばす処理
+  if (isLoading) {
+    return null
+  }
+  
+  if (!fbUser) {
+    router.push("/")
+    return null
+  }
 
   return (
     <>
