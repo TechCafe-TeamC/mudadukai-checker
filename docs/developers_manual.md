@@ -34,6 +34,13 @@ yarn add @emotion/react @emotion/styled
 
 # fullcalendarインストール
 $ yarn add @fullcalendar/react @fullcalendar/core @fullcalendar/daygrid @fullcalendar/timegrid @fullcalendar/list
+
+# three/fiberインストール
+yarn add three @react-three/fiber @react-three/drei
+yarn add -D @types/three
+
+# three/cannonインストール
+yarn add @react-three/cannon
 ```
 
 # サーバー起動
