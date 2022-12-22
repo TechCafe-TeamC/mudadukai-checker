@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import WalletNav from '../components/WalletNav'
 import FullCalendar from "@fullcalendar/react"
 import dayGridPlugin from "@fullcalendar/daygrid"
@@ -9,29 +9,40 @@ import { FileInput } from '../components/FileInput'
 import * as Icon from 'react-bootstrap-icons'
 import Link from 'next/link'
 import Layout from '../components/Layout'
+import { Mesh } from "three"
+import { ShowFallYen } from '../components/ShowFallYen'
 
-const wallet = () => {
+
+type Props = {
+  position: [x: number, y: number, z: number]
+}
+
+const wallet = ({ position }: Props) => {
   const [showModal, setshowModal] = useState<boolean>(false)
   const OpenModal = () => setshowModal(true)
   const CloseModal = () => setshowModal(false)
 
-  return (
-    <Layout>
-      <FileInput/>
+  const mesh = useRef<Mesh>(null!)
 
-      <div className='
+  return (
+    <>
+      <ShowFallYen />
+      <Layout>
+        <FileInput />
+
+        <div className='
         flex
         justify-right
         w-full
         h-screen'
-      >
-        <div className='
+        >
+          <div className='
           absolute
           left-5
           top-5'
-        >
-          {/* トップページへ */}
-          <Link href='/' className='
+          >
+            {/* トップページへ */}
+            <Link href='/' className='
           bg-gray-800
           m-5
           rounded-full
@@ -39,9 +50,9 @@ const wallet = () => {
           origin-shadow
           flex
           justify-center'
-          >
+            >
               <div
-                  className='
+                className='
               bg-gray-800
               w-16
               h-16
@@ -49,18 +60,18 @@ const wallet = () => {
               border-gold
               rounded-full'
               >
-                  <Icon.House
-                      size='32'
-                      className='
+                <Icon.House
+                  size='32'
+                  className='
                   text-gold'
-                  />
+                />
               </div>
-          </Link>
+            </Link>
+          </div>
+          {/* 下部のナビゲーション */}
+          <WalletNav OnClick={OpenModal} />
         </div>
-        {/* 下部のナビゲーション */}
-        <WalletNav OnClick={OpenModal} />
-      </div>
-      {/* <StyleWrapper>
+        {/* <StyleWrapper>
           <FullCalendar
             plugins={[dayGridPlugin]}
             initialView="dayGridMonth"
@@ -68,63 +79,64 @@ const wallet = () => {
             locale="ja"
           />
         </StyleWrapper> */}
-      <ShowModal
-        showModal={showModal}
-        OpenModal={OpenModal}
-        CloseModal={CloseModal}
-        title="無駄遣いチェッカー"
-      >
-        <StyleWrapper>
-          <FullCalendar
-            plugins={[dayGridPlugin]}
-            contentHeight='420px'
-            headerToolbar={{left:'', center:'title', right:''}}
-            initialView="dayGridMonth"
-            locale="ja"
-          />
-        </StyleWrapper>
-      </ShowModal>
-    </Layout>
+        <ShowModal
+          showModal={showModal}
+          OpenModal={OpenModal}
+          CloseModal={CloseModal}
+          title="無駄遣いチェッカー"
+        >
+          <StyleWrapper>
+            <FullCalendar
+              plugins={[dayGridPlugin]}
+              contentHeight='420px'
+              headerToolbar={{ left: '', center: 'title', right: '' }}
+              initialView="dayGridMonth"
+              locale="ja"
+            />
+          </StyleWrapper>
+        </ShowModal>
+      </Layout>
+    </>
   )
 }
 
 const StyleWrapper = styled.div`
-.fc-toolbar {
-  color: rgb(212,175,55);
-  background: rgb(31 41 55);
-  border: none;
+      .fc-toolbar {
+        color: rgb(212,175,55);
+      background: rgb(31 41 55);
+      border: none;
 }
-.fc-scrollgrid {
-  border: none;
-  font-size: 0.9rem;
+      .fc-scrollgrid {
+        border: none;
+      font-size: 0.9rem;
 }
-.fc-theme-standard th{
-  height: 10px;
-  border: none;
+      .fc-theme-standard th{
+        height: 10px;
+      border: none;
 }
-.fc-theme-standard td {
-  border: none;
-  background: rgb(17,24,39);
-  overflow:hidden;
+      .fc-theme-standard td {
+        border: none;
+      background: rgb(17,24,39);
+      overflow:hidden;
 }
-.fc .fc-daygrid-day.fc-day-today {
-  background: rgb(17,24,39);
+      .fc .fc-daygrid-day.fc-day-today {
+        background: rgb(17,24,39);
 }
-.fc .fc-daygrid-day.fc-day-today .fc-daygrid-day-frame {
-  background: rgb(17,24,39);
-  outline: 3px solid white;
-  outline-offset: -3px;
+      .fc .fc-daygrid-day.fc-day-today .fc-daygrid-day-frame {
+        background: rgb(17,24,39);
+      outline: 3px solid white;
+      outline-offset: -3px;
 }
-.fc .fc-daygrid-day-frame {
-  height: 100%;
+      .fc .fc-daygrid-day-frame {
+        height: 100%;
 }
-.fc .fc-daygrid-day-top {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  min-height: 100%;
+      .fc .fc-daygrid-day-top {
+        display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 100%;
 }
-`
+      `
 
 export default wallet
