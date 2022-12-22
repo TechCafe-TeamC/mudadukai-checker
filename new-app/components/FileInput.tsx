@@ -1,7 +1,11 @@
 import React, { ChangeEventHandler, useState } from 'react'
 import sendVisionAPI from '../hooks/UsevisionApi'
 
-export const FileInput = () => {
+type Props = {
+    onChange: (file: File, total: number) => void
+}
+
+export const FileInput = ({ onChange }: Props) => {
 
     const [file, setfile] = useState<HTMLInputElement>()
 
@@ -74,8 +78,9 @@ export const FileInput = () => {
             const a = sendVisionAPI(result)
                 .then(result => {
                     // console.log(result.responses[0].textAnnotations[0].description);
-                    const a = findAmountByGoukei(result.responses[0].textAnnotations)
-                    console.log(a);
+                    const amount = findAmountByGoukei(result.responses[0].textAnnotations) as number
+                    // console.log(amount);
+                    onChange(file, amount)
 
                 })
         }

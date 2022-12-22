@@ -15,7 +15,7 @@ export const Floor = () => {
     <>
       {/* @ts-ignore */}
       <mesh ref={ref} scale={200}>
-        <planeBufferGeometry />
+        <planeGeometry />
         <meshStandardMaterial color="white" />
       </mesh >
     </>
