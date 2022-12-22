@@ -9,7 +9,6 @@ import { FileInput } from '../components/FileInput'
 import * as Icon from 'react-bootstrap-icons'
 import Link from 'next/link'
 import Layout2 from '../components/WalletLayout'
-import { Mesh } from "three"
 import { ShowFallYen } from '../components/ShowFallYen'
 import { ModalConfirm } from '../components/ModalConfirm'
 import useTotalToCoin from '../hooks/useTotalToCoin'
@@ -30,7 +29,7 @@ const wallet = () => {
   const CloseConfirm = () => setshowConfirm(false)
   // 画像ファイルの情報
   const [imageConfirm, setimageConfirm] = useState<File>()
-  const [insertMoner, setinsertMoney] = useState<number>(0)
+  const [insertMoney, setinsertMoney] = useState<number>(0)
   const [insertCoin, setinsertCoin] = useState<number[]>() // 入れた金額コイン
 
   const OnOpenComfirm = (file: File, total: number) => { // モーダル開くのとファイルにデータ入れるの同時に行う
@@ -42,15 +41,12 @@ const wallet = () => {
   // モーダルの確定押した時の処理
   const BtnConfirm = () => {
     CloseConfirm()
-    setinsertCoin(useTotalToCoin(insertMoner)) // コインを表示させる
+    setinsertCoin(useTotalToCoin(insertMoney)) // コインを表示させる
 
     // 送信系書いてください
   }
 
   // const Money = 3278
-  // 入れた金額
-  console.log(insertCoin);
-
 
   // ログインしていなければルートディレクトリに飛ばす処理
   if (isLoading) {
@@ -149,7 +145,7 @@ const wallet = () => {
           title="ご確認"
         >
           <StyleWrapper>
-            <ModalConfirm imageConfirm={imageConfirm!} total={insertMoner} BtnConfitm={BtnConfirm} />
+            <ModalConfirm imageConfirm={imageConfirm!} total={insertMoney} BtnConfitm={BtnConfirm} />
           </StyleWrapper>
         </ShowModal>
 
