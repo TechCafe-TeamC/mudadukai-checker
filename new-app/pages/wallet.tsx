@@ -8,7 +8,7 @@ import { ShowModal } from '../components/ShowModal'
 import { FileInput } from '../components/FileInput'
 import * as Icon from 'react-bootstrap-icons'
 import Link from 'next/link'
-import Layout from '../components/Layout'
+import Layout2 from '../components/WalletLayout'
 import { Mesh } from "three"
 import { ShowFallYen } from '../components/ShowFallYen'
 
@@ -26,8 +26,7 @@ const wallet = ({ position }: Props) => {
 
   return (
     <>
-      <ShowFallYen />
-      <Layout>
+      <Layout2>
         <FileInput />
 
         <div className='
@@ -36,6 +35,15 @@ const wallet = ({ position }: Props) => {
         w-full
         h-screen'
         >
+          <div className='
+            absolute
+            top-0 left-0
+            w-full
+            h-screen
+            z-[-1]'
+          >
+            <ShowFallYen />
+          </div>
           <div className='
           absolute
           left-5
@@ -95,7 +103,7 @@ const wallet = ({ position }: Props) => {
             />
           </StyleWrapper>
         </ShowModal>
-      </Layout>
+      </Layout2>
     </>
   )
 }
