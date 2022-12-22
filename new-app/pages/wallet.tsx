@@ -9,12 +9,15 @@ import { FileInput } from '../components/FileInput'
 import * as Icon from 'react-bootstrap-icons'
 import Link from 'next/link'
 import Layout2 from '../components/WalletLayout'
-import { Mesh } from "three"
 import { ShowFallYen } from '../components/ShowFallYen'
 import { ModalConfirm } from '../components/ModalConfirm'
 import useTotalToCoin from '../hooks/useTotalToCoin'
 import { useAuth } from '../context/auth'
 import { useRouter } from 'next/router'
+import { collection, doc, setDoc } from 'firebase/firestore'
+import { db } from '../firebase/client'
+import { PostMoney } from '../types/PostMoney'
+import { zeroPadding } from '../lib/wallet'
 
 const wallet = () => {
   const {fbUser, isLoading} = useAuth()
@@ -23,7 +26,6 @@ const wallet = () => {
   const [showModal, setshowModal] = useState<boolean>(false)
   const OpenModal = () => setshowModal(true)
   const CloseModal = () => setshowModal(false)
-
 
   const [showConfirm, setshowConfirm] = useState<boolean>(false)
   const OpenConfirm = () => setshowConfirm(true)
@@ -39,19 +41,6 @@ const wallet = () => {
     setinsertMoney(total)
   }
 
-  // モーダルの確定押した時の処理
-  const BtnConfirm = () => {
-    CloseConfirm()
-    setinsertCoin(useTotalToCoin(insertMoner)) // コインを表示させる
-
-    // 送信系書いてください
-  }
-
-  // const Money = 3278
-  // 入れた金額
-  console.log(insertCoin);
-
-
   // ログインしていなければルートディレクトリに飛ばす処理
   if (isLoading) {
     return null
@@ -60,6 +49,31 @@ const wallet = () => {
   if (!fbUser) {
     router.push("/")
     return null
+  }
+
+  // モーダルの確定押した時の処理
+  const BtnConfirm = () => {
+    CloseConfirm()
+    setinsertCoin(useTotalToCoin(insertMoner)) // コインを表示させる
+
+    // 送信系書いてください
+    const ref = doc(collection(db, "posts"))
+    let today = new Date()
+    let year = today.getFullYear()
+    let month = today.getMonth() + 1
+    let day = today.getDate()
+    
+    const dateNow: string = year + '-' + zeroPadding(month, 2) + '-' + zeroPadding(day, 2)
+    const post: PostMoney = {
+      id: ref.id,
+      money: insertMoner,
+      createdAt: dateNow,
+      userId: fbUser.uid
+    }
+
+    setDoc(ref, post).then(() => {
+        alert("データ送信しました")
+    })
   }
 
   return (
