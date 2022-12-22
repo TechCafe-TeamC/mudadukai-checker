@@ -23,10 +23,12 @@ const wallet = () => {
   const OpenConfirm = () => setshowConfirm(true)
   const CloseConfirm = () => setshowConfirm(false)
   // 画像ファイルの情報
-  const [imageConfirm, setimageConfirm] = useState()
-  const OnOpenComfirm = () => { // モーダル開くのとファイルにデータ入れるの同時に行う
+  const [imageConfirm, setimageConfirm] = useState<File>()
+  const [total, settotal] = useState<number>(0)
+  const OnOpenComfirm = (file: File, total: number) => { // モーダル開くのとファイルにデータ入れるの同時に行う
     OpenConfirm()
-    alert('11')
+    setimageConfirm(file)
+    settotal(total)
   }
 
 
@@ -117,7 +119,8 @@ const wallet = () => {
           title="ご確認"
         >
           <StyleWrapper>
-            <ModalConfirm />
+            {/* @ts-ignore */}
+            <ModalConfirm imageConfirm={imageConfirm} total={ total} />
           </StyleWrapper>
         </ShowModal>
 
