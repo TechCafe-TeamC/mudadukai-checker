@@ -32,7 +32,7 @@ const wallet = () => {
     settotal(total)
   }
 
-  const Money = 25432
+  const Money = 3278
   console.log(useTotalToCoin(Money));
 
   return (

@@ -1,6 +1,6 @@
 const useTotalToCoin = (total: number) => {
     const coins: number[] = [500, 100, 50, 10, 5, 1]
-    let remain = total;
+    let remain: number = total;
     let result: number[] = []
     coins.forEach((coin, i) => {
         const num = Math.floor(remain / coin)
