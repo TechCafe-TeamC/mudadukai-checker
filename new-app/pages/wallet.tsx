@@ -17,7 +17,6 @@ import { useAuth } from '../context/auth'
 import { useRouter } from 'next/router'
 
 const wallet = () => {
-  // ログインしていなければルートディレクトリに飛ばす処理
   const {fbUser, isLoading} = useAuth()
   const router = useRouter()
 
@@ -47,6 +46,7 @@ const wallet = () => {
   const Money = 3278
   console.log(useTotalToCoin(Money));
 
+  // ログインしていなければルートディレクトリに飛ばす処理
   if (isLoading) {
     return null
   }
