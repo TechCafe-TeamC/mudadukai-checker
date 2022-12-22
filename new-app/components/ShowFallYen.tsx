@@ -5,6 +5,7 @@ import { Physics } from "@react-three/cannon"
 import { Floor } from "./materials/Floor"
 import useTotalToCoin from "../hooks/useTotalToCoin"
 import { memo } from "react"
+import { radToDeg } from "three/src/math/MathUtils"
 
 type Props = {
     coin: number[]
@@ -14,7 +15,8 @@ export const ShowFallYen = memo(({ coin }: Props) => {
     return (
         <Canvas className='w-full h-full absolute top-0 left-0'
             camera={{
-                position: [0, 0, 20]
+                position: [0, 6, 20],
+                rotation: [ 0, 0, 0]
             }}
         >
             <Physics>
@@ -28,8 +30,8 @@ export const ShowFallYen = memo(({ coin }: Props) => {
                         : <></>
                 }
             </Physics>
-            <ambientLight intensity={0.1} />
-            <directionalLight position={[1, 20, -10]} intensity={1} castShadow />
+            <ambientLight intensity={0.07} color='yellow' />
+            <directionalLight position={[30, 30, 10]} intensity={0.6} castShadow />
 
         </Canvas >)
 })
