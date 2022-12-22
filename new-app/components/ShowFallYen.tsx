@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import { Canvas } from "@react-three/fiber"
 import { Yen500 } from "./materials/Yen500"
 import { Physics } from "@react-three/cannon"

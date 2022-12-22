@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import { useLoader } from "@react-three/fiber"
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader"
 import { TextureLoader } from "three/src/loaders/TextureLoader"

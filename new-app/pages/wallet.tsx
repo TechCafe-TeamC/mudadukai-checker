@@ -131,14 +131,6 @@ const wallet = () => {
           {/* 下部のナビゲーション */}
           <WalletNav OnClick={OpenModal} />
         </div>
-        {/* <StyleWrapper>
-          <FullCalendar
-            plugins={[dayGridPlugin]}
-            initialView="dayGridMonth"
-            locales={[jaLocale]}
-            locale="ja"
-          />
-        </StyleWrapper> */}
         <ShowModal
           showModal={showModal}
           OpenModal={OpenModal}
