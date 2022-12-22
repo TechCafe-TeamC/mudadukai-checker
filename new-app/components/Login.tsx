@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
-import { auth, provider } from '../hooks/firebase'
 import Link from 'next/link'
-import { useAuthState } from 'react-firebase-hooks/auth'
+import { logout } from '../lib/auth'
+import { auth } from "../firebase/client"
 
 const Login = () => {
 
@@ -94,7 +94,7 @@ const UserInfo = () => {
 // ログアウト
 const LogOutButton = () => {
   return (
-    <button onClick={() => auth.signOut()} >
+    <button onClick={logout} >
       Log Out
     </button>
   )

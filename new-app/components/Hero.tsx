@@ -1,10 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
-import { auth, provider } from '../hooks/firebase'
+import { auth } from "../firebase/client"
 import { useAuthState } from "react-firebase-hooks/auth"
-import Link from 'next/link'
-import { signInWithPopup } from 'firebase/auth'
 import Login from './Login'
+import { login } from '../lib/auth'
 
 const Hero = () => {
   const [user] = useAuthState(auth)
@@ -67,12 +66,8 @@ export default Hero
 // ログイン
 
 const LogInButton = () => {
-  const LogInWithGoogle = () => {
-    // firebase google login
-    signInWithPopup(auth, provider)
-  }
   return (
-    <button onClick={LogInWithGoogle}>
+    <button onClick={login}>
       Google Login
     </button>
   )
