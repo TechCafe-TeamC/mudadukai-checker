@@ -31,7 +31,7 @@ export const ShowModal = ({ showModal, OpenModal, CloseModal, title, children }:
                                     </h3>
                                 </div>
                                 {/*body*/}
-                                <div className="relative p-5 flex-auto text-white">
+                                <div className="relative p-5 flex items-center h-[90%] my-auto text-white">
                                     {children}
                                 </div>
                             </div>
