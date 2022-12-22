@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import WalletNav from '../components/WalletNav'
 import FullCalendar from "@fullcalendar/react"
 import dayGridPlugin from "@fullcalendar/daygrid"
@@ -11,23 +11,29 @@ import Link from 'next/link'
 import Layout2 from '../components/WalletLayout'
 import { Mesh } from "three"
 import { ShowFallYen } from '../components/ShowFallYen'
+import { ModalConfirm } from '../components/ModalConfirm'
 
-
-type Props = {
-  position: [x: number, y: number, z: number]
-}
-
-const wallet = ({ position }: Props) => {
+const wallet = () => {
   const [showModal, setshowModal] = useState<boolean>(false)
   const OpenModal = () => setshowModal(true)
   const CloseModal = () => setshowModal(false)
 
-  const mesh = useRef<Mesh>(null!)
+
+  const [showConfirm, setshowConfirm] = useState<boolean>(false)
+  const OpenConfirm = () => setshowConfirm(true)
+  const CloseConfirm = () => setshowConfirm(false)
+  // 画像ファイルの情報
+  const [imageConfirm, setimageConfirm] = useState()
+  const OnOpenComfirm = () => { // モーダル開くのとファイルにデータ入れるの同時に行う
+    OpenConfirm()
+    alert('11')
+  }
+
 
   return (
     <>
       <Layout2>
-        <FileInput />
+        <FileInput onChange={OnOpenComfirm} />
 
         <div className='
         flex
@@ -103,6 +109,18 @@ const wallet = ({ position }: Props) => {
             />
           </StyleWrapper>
         </ShowModal>
+        {/* 確認のモーダル */}
+        <ShowModal
+          showModal={showConfirm}
+          OpenModal={OpenConfirm}
+          CloseModal={CloseConfirm}
+          title="ご確認"
+        >
+          <StyleWrapper>
+            <ModalConfirm />
+          </StyleWrapper>
+        </ShowModal>
+
       </Layout2>
     </>
   )
