@@ -1,19 +1,18 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { pageTransition } from '../animations/variants'
+import { indexTransition } from '../animations/variants'
 
 type Props = {
     children: React.ReactNode
   }
 
-const Layout = ({children}: Props) => {
+  const Layout1 = ({children}: Props) => {
     return (
         <motion.div
-            {...pageTransition}
+            {...indexTransition}
         >
             <div>{children}</div>
         </motion.div>
     )
 }
-
-export default Layout
+export default Layout1

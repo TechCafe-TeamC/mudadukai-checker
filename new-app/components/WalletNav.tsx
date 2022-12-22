@@ -62,7 +62,7 @@ const WalletNav = ({ OnClick }: Props) => {
             </label>
 
             {/* 写真撮影 */}
-            <label htmlFor='camera'
+            <label htmlFor='ImageSelect'
                 className='
                     bg-gray-800
                     m-5
