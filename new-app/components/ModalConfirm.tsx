@@ -10,6 +10,7 @@ type Props = {
 export const ModalConfirm = ({ imageConfirm, total, BtnConfitm }: Props) => {
     const coins: number[] = useTotalToCoin(total)
 
+
     return (
         <div className='text-center'>
             <img src={window.URL.createObjectURL(imageConfirm)} className="w-48 h-48 object-contain text-center"></img>
