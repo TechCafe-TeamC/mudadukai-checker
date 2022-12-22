@@ -18,7 +18,6 @@ export const ShowFallYen = memo(({ coin }: Props) => {
             }}
         >
             <Physics>
-
                 <Floor />
                 {
                     coin ?
@@ -28,8 +27,6 @@ export const ShowFallYen = memo(({ coin }: Props) => {
                             ))
                         : <></>
                 }
-
-
             </Physics>
             <ambientLight args={[0xffffff]} intensity={0.1} />
             <directionalLight position={[1, 20, -10]} intensity={1} castShadow />

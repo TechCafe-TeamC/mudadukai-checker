@@ -10,7 +10,6 @@ type Props = {
 }
 
 export const Yen500 = memo(({ posX }: Props) => {
-  console.log(posX);
 
   const [ref] = useBox(() => ({
     mass: 0.5,
