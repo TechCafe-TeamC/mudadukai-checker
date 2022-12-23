@@ -34,7 +34,7 @@ const wallet = () => {
   // 画像ファイルの情報
   const [imageConfirm, setimageConfirm] = useState<File>()
   const [insertMoney, setinsertMoney] = useState<number>(0) // 入れたお金
-  const [insertCoin, setinsertCoin] = useState<number[]>([]) // 入れた金額コイン
+  const [insertCoin, setinsertCoin] = useState<number[]>([0,0,0,0,0,0]) // 入れた金額コイン
 
   // 今月の使用金額のデータ取得
   const [userData, setUserData] = useState<any[]>([])
@@ -74,23 +74,25 @@ const wallet = () => {
   }
 
   const handleCoinStart = () => { // 最初のコインの処理
-    const money = 23419;
-    setinsertCoin(useTotalToCoin(money))
+    setinsertCoin(useTotalToCoin(totalMonthMoney))
   }
 
   useEffect(() => {
     handleCoinStart() // 最初にコイン入れる
-  }, [])
-  console.log(insertCoin);
+  }, [totalMonthMoney])
+  // console.log(insertCoin);
 
 
   const handleCoinInsert = (coin: number[]) => { // 挿入のコインの処理
     const result = insertCoin.map((e, i) =>
-      e += coin[i]
+      (e + coin[i])
     )
+  
     setinsertCoin(result)
     console.log(insertCoin);
   }
+
+  console.log(insertCoin);
 
   // ログインしていなければルートディレクトリに飛ばす処理
   if (isLoading) {
@@ -105,8 +107,7 @@ const wallet = () => {
   // モーダルの確定押した時の処理
   const BtnConfirm = () => {
     CloseConfirm()
-    // handleCoinInsert(useTotalToCoin(insertCoin))
-    // setinsertCoin(useTotalToCoin(insertMoney)) // コインを表示させる
+    handleCoinInsert(insertCoin)
 
     // 送信系書いてください
     const ref = doc(collection(db, "posts"))
