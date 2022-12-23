@@ -7,17 +7,11 @@ import { FileInput } from './FileInput'
 
 type Props = {
     OnClick: () => void
+    OnOpenComforim: (file: File, total: number) => void
 }
 
-const WalletNav = ({ OnClick }: Props) => {
+const WalletNav = ({ OnClick, OnOpenComforim }: Props) => {
     const [image, setImage] = useState<HTMLInputElement>()
-    
-    const imageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (!e.target.files) return
-        const currentImage = e.target.files[0]
-        console.log(currentImage)
-
-    }
 
     return (
         <div className='
@@ -36,15 +30,7 @@ const WalletNav = ({ OnClick }: Props) => {
                     cursor-pointer'
             >
                 {/* 完成後にVisionAI呼ぶ */}
-                {/* <FileInput/> */}
-                <input
-                    id='ImageSelect'
-                    type="file"
-                    accept='image/*'
-                    className='hidden'
-                    onChange={imageChange}
-                    
-                />
+                <FileInput onChange={(OnOpenComforim)} isCapture={false} />
                 <div className='
                 bg-gray-800
                 p-[13px]
@@ -75,12 +61,7 @@ const WalletNav = ({ OnClick }: Props) => {
             >
                 {/* 完成後にVisionAI呼ぶ */}
                 {/* <FileInput/> */}
-                <input
-                    id='ImageSelect'
-                    type="file"
-                    accept='image/*;capture=camera'
-                    className='hidden'
-                />
+                <FileInput onChange={(OnOpenComforim)} isCapture={true} />
                 <div className='
                 bg-gray-800
                 p-[11px]

@@ -3,9 +3,10 @@ import sendVisionAPI from '../hooks/UsevisionApi'
 
 type Props = {
     onChange: (file: File, total: number) => void
+    isCapture: boolean
 }
 
-export const FileInput = ({ onChange }: Props) => {
+export const FileInput = ({ onChange, isCapture }: Props) => {
 
     const [file, setfile] = useState<HTMLInputElement>()
 
@@ -102,7 +103,7 @@ export const FileInput = ({ onChange }: Props) => {
             <input
                 id='ImageSelect'
                 type="file"
-                accept='image/*'
+                accept={isCapture ? 'image/*;capture=camera' : 'image/*'}
                 onChange={handleFiles}
                 className='hidden'
             />
