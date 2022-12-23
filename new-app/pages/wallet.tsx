@@ -213,7 +213,7 @@ const wallet = () => {
               </div>
             </Link>
             {/* 合計金額表示ウィンドウ */}
-            <div className='
+            <div className='absolute top-32 left-5 
               bg-gray-800
               my-5
               rounded-full
@@ -221,8 +221,8 @@ const wallet = () => {
               origin-shadow'
             >
               <div className='flex items-center h-full px-5 text-gold font-bold border-gold rounded-full text-1xl'>
-                <p className='w-36 p-2'>今月の使用金額：</p>
-                <p className='bg-gray-900 p-1 px-2 w-32 rounded-md text-right text-2xl text-white origin-shadow-inset'>{totalMonthMoney}</p>
+                <p className='w-36 p-1'>今月の使用金額：</p>
+                <p className='bg-gray-900 p-1 px-2 w-28 rounded-md text-right text-2xl text-white origin-shadow-inset'>{totalMonthMoney}</p>
                 <p className='p-3'>円</p>
               </div>
             </div>
