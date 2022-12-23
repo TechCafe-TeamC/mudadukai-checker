@@ -15,7 +15,7 @@ import { ModalConfirm } from '../components/ModalConfirm'
 import useTotalToCoin from '../hooks/useTotalToCoin'
 import { useAuth } from '../context/auth'
 import { useRouter } from 'next/router'
-import { collection, doc, getDocs, onSnapshot, setDoc } from 'firebase/firestore'
+import { collection, doc, getDocs, onSnapshot, query, setDoc, where } from 'firebase/firestore'
 import { db } from '../firebase/client'
 import { PostMoney } from '../types/PostMoney'
 import { zeroPadding } from '../lib/wallet'
@@ -39,17 +39,20 @@ const wallet = () => {
   // 今月の使用金額のデータ取得
   const [userData, setUserData] = useState<any[]>([])
   const [totalMonthMoney, setTotalMonthMoney] = useState<number>(0) //表示させる今月の合計金額
-  useEffect(() => {
-    const docRef = collection(db, `posts`)
-    getDocs(docRef).then(snapshot => {
-      let results: any[] = []
 
-      snapshot.docs.forEach(doc => {
-        results.push({id: doc.id, ...doc.data()})
-        setUserData(results)
+  useEffect(() => {
+    if (fbUser) {
+      const docRef = query(collection(db, `posts`), where("userId", "==", fbUser.uid))
+      getDocs(docRef).then(snapshot => {
+        let results: any[] = [];
+        
+        snapshot.docs.forEach(doc => {
+          results.push({id: doc.id, ...doc.data()})
+          setUserData(results)
+        })
       })
-    })
-  }, [insertCoin])
+    }
+  }, [fbUser, insertCoin])
 
   useEffect(() => {
     if (userData.length > 0) {
@@ -57,13 +60,12 @@ const wallet = () => {
       let year = today.getFullYear()
       let month = today.getMonth() + 1
       const curMonth: string = year + '-' + zeroPadding(month, 2) //現在の年-月
-      const filterData = userData.filter((data) => data.userId == fbUser?.uid && data.createdAt.slice( 0, 7 ) == curMonth)
+      const filterData = userData.filter((data) => data.createdAt.slice( 0, 7 ) == curMonth)
       let totalMoney = 0
       filterData.map((data) => {
         totalMoney = totalMoney + data.money
       })
       setTotalMonthMoney(totalMoney)
-      console.log(totalMoney)
     }
   }, [userData])
 
@@ -80,19 +82,13 @@ const wallet = () => {
   useEffect(() => {
     handleCoinStart() // 最初にコイン入れる
   }, [totalMonthMoney])
-  // console.log(insertCoin);
-
 
   const handleCoinInsert = (coin: number[]) => { // 挿入のコインの処理
     const result = insertCoin.map((e, i) =>
       (e + coin[i])
     )
-  
     setinsertCoin(result)
-    console.log(insertCoin);
   }
-
-  console.log(insertCoin);
 
   // ログインしていなければルートディレクトリに飛ばす処理
   if (isLoading) {
