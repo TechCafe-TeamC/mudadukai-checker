@@ -26,7 +26,7 @@ export const ShowFallYen = memo(({ coin }: Props) => {
             <directionalLight position={[30, 30, 10]} intensity={0.6} castShadow />
             <Physics>
                 <Floor />
-                {/* <Wall /> */}
+                <Wall />
                 {
                     coin ?
                         coin.map((e, i) =>
