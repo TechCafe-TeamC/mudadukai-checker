@@ -29,7 +29,7 @@ export const ShowModal = ({ showModal, OpenModal, CloseModal, title, children }:
                                     <div className="text-2xl">
                                         {title}
                                     </div>
-                                    <button className='text-3xl font-bold' onClick={CloseModal}>
+                                    <button className='text-3xl font-bold px-2' onClick={CloseModal}>
                                         ×
                                     </button>
                                 </div>
