@@ -20,7 +20,7 @@ import { PostMoney } from '../types/PostMoney'
 import { zeroPadding } from '../lib/wallet'
 
 const wallet = () => {
-  const {fbUser, isLoading} = useAuth()
+  const { fbUser, isLoading } = useAuth()
   const router = useRouter()
 
   const [showModal, setshowModal] = useState<boolean>(false)
@@ -33,7 +33,7 @@ const wallet = () => {
   // 画像ファイルの情報
   const [imageConfirm, setimageConfirm] = useState<File>()
   const [insertMoney, setinsertMoney] = useState<number>(0)
-  const [insertCoin, setinsertCoin] = useState<number[]>([8,10,3,4,4,7]) // 入れた金額コイン
+  const [insertCoin, setinsertCoin] = useState<number[]>([]) // 入れた金額コイン
 
   const OnOpenComfirm = (file: File, total: number) => { // モーダル開くのとファイルにデータ入れるの同時に行う
     OpenConfirm()
@@ -41,11 +41,19 @@ const wallet = () => {
     setinsertMoney(total)
   }
 
+  const handleCoinStart = () => { // 最初のコインの処理
+
+  }
+
+  const handleCoinInsert = () => { // 挿入のコインの処理
+
+  }
+
   // ログインしていなければルートディレクトリに飛ばす処理
   if (isLoading) {
     return null
   }
-  
+
   if (!fbUser) {
     router.push("/")
     return null
@@ -62,7 +70,7 @@ const wallet = () => {
     let year = today.getFullYear()
     let month = today.getMonth() + 1
     let day = today.getDate()
-    
+
     const dateNow: string = year + '-' + zeroPadding(month, 2) + '-' + zeroPadding(day, 2)
     const post: PostMoney = {
       id: ref.id,
@@ -72,7 +80,7 @@ const wallet = () => {
     }
 
     setDoc(ref, post).then(() => {
-        alert("データ送信しました")
+      alert("データ送信しました")
     })
   }
 
