@@ -12,7 +12,7 @@ const sendVisionAPI = async (base64string: string) => {
         ]
     };
     const response = await fetch(
-        `${url}?key=${process.env.VISION_API_KEY}`, {
+        `${url}?key=${process.env.NEXT_PUBLIC_VISION_API_KEY}`, {
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json'
