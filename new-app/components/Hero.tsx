@@ -4,6 +4,7 @@ import { auth } from "../firebase/client"
 import { useAuthState } from "react-firebase-hooks/auth"
 import Login from './Login'
 import { login } from '../lib/auth'
+import Image from 'next/image'
 
 const Hero = () => {
   const [user] = useAuthState(auth)
@@ -21,7 +22,8 @@ const Hero = () => {
                 <div className='
                     w-full
                     h-screen'
-                ></div>
+                >
+                </div>
                 <div className='
                 absolute
                 text-center
@@ -33,7 +35,7 @@ const Hero = () => {
                         text-4xl
                         p-10
                         font-bold'
-                        >HELLO WORLD</h1>
+                        >無駄遣いチェッカー</h1>
                     </div>
                     <div className='
                         bg-gray-800

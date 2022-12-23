@@ -28,7 +28,7 @@ const Login = () => {
             text-4xl
             p-10
             font-bold'
-          >HELLO WORLD</h1>
+          >無駄遣いチェッカー</h1>
         </Link>
         <div className='
           mb-6'
