@@ -121,7 +121,7 @@ const WalletNav = ({ OnClick }: Props) => {
                     <Icon.Calendar3
                         size='30'
                         className='
-                    text-gold'
+                            text-gold'
                     />
                 </div>
             </button>

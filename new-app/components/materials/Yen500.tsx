@@ -19,7 +19,7 @@ export const Yen500 = memo(({ pos, fileid }: Props) => {
     position: [pos[0], pos[1], pos[2]],
     rotation: [0, 0, 0],
   }))
-  const fbx = useLoader(FBXLoader, fbxs[fileid])
+  const fbx = useLoader( FBXLoader , fbxs[fileid])
   let fbxClone = fbx.clone()
 
   return (

@@ -14,31 +14,88 @@ export const ModalConfirm = ({ imageConfirm, total, BtnConfitm }: Props) => {
 
 
     return (
-        <div className='text-center'>
-            <img src={window.URL.createObjectURL(imageConfirm)} className="w-48 h-48 object-contain text-center"></img>
-            <button onClick={BtnConfitm}>確認</button>
-
-            <p className='h-48 text-3xl'>
-                {"合計:" + total + "\n"}
-                <li>
-                    {"500円:" + coins[0]}
-                </li>
-                <li>
-                    {"100円:" + coins[1]}
-                </li>
-                <li>
-                    {"50円:" + coins[2]}
-                </li>
-                <li>
-                    {"10円:" + coins[3]}
-                </li>
-                <li>
-                    {"5円:" + coins[4]}
-                </li>
-                <li>
-                    {"1円:" + coins[5]}
-                </li>
-            </p>
+        <div className=''>
+            <div className='flex justify-center'>
+                <img src={window.URL.createObjectURL(imageConfirm)}
+                    className="
+                        min-w-[16rem] max-w-[16rem]
+                        min-h-[22rem] max-h-[22rem]
+                        p-5
+                        object-contain
+                        bg-gray-900
+                        rounded-3xl"
+                >
+                </img>
+                <div className='
+                    h-full
+                    my-auto
+                    ml-3
+                    text-2xl
+                    list-none
+                    text-gold'
+                >
+                    <li className='flex justify-between border-b-2 border-gray-600 p-2'>
+                        <p className='w-20'>500円</p>
+                        <p className='w-4'>×</p>
+                        <p className=' w-12 text-white text-right'>{coins[0]}</p>
+                    </li>
+                    <li className='flex justify-between border-b-2 border-gray-600 p-2'>
+                        <p className='w-20'>100円</p>
+                        <p className='w-4'>×</p>
+                        <p className=' w-12 text-white text-right'>{coins[1]}</p>
+                    </li>
+                    <li className='flex justify-between border-b-2 border-gray-600 p-2'>
+                        <p className='w-20'>50円</p>
+                        <p className='w-4'>×</p>
+                        <p className=' w-12 text-white text-right'>{coins[2]}</p>
+                    </li>
+                    <li className='flex justify-between border-b-2 border-gray-600 p-2'>
+                        <p className='w-20'>10円</p>
+                        <p className='w-4'>×</p>
+                        <p className=' w-12 text-white text-right'>{coins[3]}</p>
+                    </li>
+                    <li className='flex justify-between border-b-2 border-gray-600 p-2'>
+                        <p className='w-20'>5円</p>
+                        <p className='w-4'>×</p>
+                        <p className=' w-12 text-white text-right'>{coins[4]}</p>
+                    </li>
+                    <li className='flex justify-between border-b-2 border-gray-600 p-2'>
+                        <p className='w-20'>1円</p>
+                        <p className='w-4'>×</p>
+                        <p className=' w-12 text-white text-right'>{coins[5]}</p>
+                    </li>
+                </div>
+            </div>
+            <div className='flex justify-between items-center m-5'>
+                <div className='
+                    text-2xl
+                    text-gold
+                    flex
+                    p-5
+                    leading-10'
+                >
+                    <p>合計：</p>
+                    <p className='text-white font-bold text-3xl'>{total + "円"}</p>
+                </div>
+                <button onClick={BtnConfitm}
+                    className='
+                        rounded-full
+                        border-gray
+                        origin-shadow'
+                >
+                    <div className='
+                        p-3
+                        w-28
+                        text-2xl
+                        text-gold
+                        text-center
+                        rounded-full
+                        border-gold'
+                    >
+                        確認
+                    </div>
+                </button>
+            </div>
 
         </div>
     )
