@@ -78,7 +78,7 @@ const wallet = () => {
       // calendarDateのデータ作成
       const arrCalendarDate: string[] = []
       for (let i = 1; i <= lastDay; i++) {
-        arrCalendarDate.push(curMonth + '-' + i)
+        arrCalendarDate.push(curMonth + '-' + zeroPadding(i, 2))
       }
       setCalendarDate(arrCalendarDate)
 
