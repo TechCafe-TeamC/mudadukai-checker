@@ -25,10 +25,13 @@ export const ShowModal = ({ showModal, OpenModal, CloseModal, title, children }:
                             {/*content*/}
                             <div className="border-gold rounded-2xl bg-gray-800 text-gold h-[600px]">
                                 {/*header*/}
-                                <div className="flex items-start p-3 border-b border-solid border-gray-600">
-                                    <h3 className="text-2xl">
+                                <div className="flex justify-between p-3 border-b border-solid border-gray-600">
+                                    <div className="text-2xl">
                                         {title}
-                                    </h3>
+                                    </div>
+                                    <button className='text-3xl font-bold' onClick={CloseModal}>
+                                        ×
+                                    </button>
                                 </div>
                                 {/*body*/}
                                 <div className="relative p-5 flex items-center h-[90%] my-auto text-white">
