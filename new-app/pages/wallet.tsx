@@ -34,7 +34,7 @@ const wallet = () => {
   // 画像ファイルの情報
   const [imageConfirm, setimageConfirm] = useState<File>()
   const [insertMoney, setinsertMoney] = useState<number>(0) // 入れたお金
-  const [insertCoin, setinsertCoin] = useState<number[]>([100, 200, 0, 0, 0, 0]) // 入れた金額コイン
+  const [insertCoin, setinsertCoin] = useState<number[]>([0, 0, 0, 0, 0, 0]) // 入れた金額コイン
 
   // 今月の使用金額のデータ取得
   const [userData, setUserData] = useState<any[]>([])
@@ -73,18 +73,20 @@ const wallet = () => {
     OpenConfirm()
     setimageConfirm(file)
     setinsertMoney(total)
-    setinsertCoin([0, 0, 0, 0, 0, 0])
+    // setinsertCoin([0, 0, 0, 0, 0, 0])
   }
 
   const handleCoinStart = () => { // 最初のコインの処理
-    // setinsertCoin(useTotalToCoin(totalMonthMoney))
+    setinsertCoin(useTotalToCoin(totalMonthMoney))
   }
 
   useEffect(() => {
     handleCoinStart() // 最初にコイン入れる
+    // setinsertCoin([0, 0, 0, 0, 0, 0])
+
   }, [totalMonthMoney])
 
-  const handleCoinInsert = (coin: number[]) => { // 挿入のコインの処理
+  const handleCoinInsert = (coin: number[]) => { // 
     const result = insertCoin.map((e, i) =>
       (e + coin[i])
     )
@@ -100,11 +102,16 @@ const wallet = () => {
     router.push("/")
     return null
   }
+  console.log(insertCoin);
+
 
   // モーダルの確定押した時の処理
   const BtnConfirm = () => {
+    setinsertCoin([0, 0, 0, 0, 0, 0])
+
     CloseConfirm()
-    handleCoinInsert(insertCoin)
+    // handleCoinInsert(insertCoin) // 使わない
+
 
     // 送信系書いてください
     const ref = doc(collection(db, "posts"))
@@ -122,7 +129,7 @@ const wallet = () => {
     }
 
     setDoc(ref, post).then(() => {
-      alert("データ送信しました")
+      // alert("データ送信しました")
     })
   }
 
