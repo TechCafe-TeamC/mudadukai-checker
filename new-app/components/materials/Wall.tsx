@@ -5,7 +5,7 @@ export const Wall = () => {
   const [ref, api] = usePlane(() => ({
     mass: 10,
     // args: [100, 1, 100],
-    position: [0, -5, 0.01],
+    position: [0,0, 0.01],
     rotation: [80, 0, 0],
     type: "Static"
   }))

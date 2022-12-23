@@ -6,6 +6,7 @@ import { Floor } from "./materials/Floor"
 import useTotalToCoin from "../hooks/useTotalToCoin"
 import { memo } from "react"
 import { radToDeg } from "three/src/math/MathUtils"
+import { Wall } from "./materials/Wall"
 
 type Props = {
     coin: number[]
@@ -25,6 +26,7 @@ export const ShowFallYen = memo(({ coin }: Props) => {
             <directionalLight position={[30, 30, 10]} intensity={0.6} castShadow />
             <Physics>
                 <Floor />
+                {/* <Wall /> */}
                 {
                     coin ?
                         coin.map((e, i) =>
