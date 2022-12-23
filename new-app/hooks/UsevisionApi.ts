@@ -1,4 +1,4 @@
-const api_key = `AIzaSyAXKBp3xOb8-jYXt7Bzl9zlRROQwsob5zY`;
+// const api_key = `AIzaSyAXKBp3xOb8-jYXt7Bzl9zlRROQwsob5zY`;
 const url = `https://vision.googleapis.com/v1/images:annotate`;
 
 // Send API Request to Cloud Vision API
@@ -13,7 +13,7 @@ const sendVisionAPI = async (base64string: string) => {
         ]
     };
     const response = await fetch(
-        `${url}?key=${api_key}`, {
+        `${url}?key=${process.env.NEXT_PUBLIC_VISION_API_KEY}`, {
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json'

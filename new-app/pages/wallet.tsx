@@ -123,6 +123,17 @@ const wallet = () => {
     setinsertCoin(result)
   }
 
+  const colorCalendar = (calendarTotal: number) => {
+    let result = 0
+    if (calendarTotal > 0) {
+      result = 0.2
+    }
+    result = 0.00002 * Math.min(calendarTotal, 10000)
+    result = Math.floor(result * 255)
+    return `rgba(253, 205, 31, ${result})`
+  }
+
+
   // ログインしていなければルートディレクトリに飛ばす処理
   if (isLoading) {
     return null
@@ -242,11 +253,13 @@ const wallet = () => {
               initialView="dayGridMonth"
               locale="ja"
               events={
-                
-                [
-                { title: "aaa", date: "2022-12-11",color:"#F99" ,display:"background"},
-
-              ]}
+                // [{ title: "aaa", date: "2022-12-11", color: "#F99", display: "background" },]
+                calendarDate.map((v, i) => {
+                  return {
+                    title: "", date: v, display: "background", backgroundColor: colorCalendar(calendarTotal[i])
+                  }
+                })
+              }
             />
           </StyleWrapper>
         </ShowModal>
