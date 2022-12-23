@@ -1,5 +1,7 @@
 # 環境構築
 
+- Figmaリンク（https://www.figma.com/file/llLN41dNIqlOmkysNhtqkM/%E4%BC%81%E7%94%BB%E3%83%BB%E8%80%83%E6%A1%88?node-id=0%3A1&t=iQFyhJCrpg9IpGk2-1）
+
 ```bash
 # プロジェクト作成
 yarn create next-app --typescript
