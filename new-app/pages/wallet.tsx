@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import WalletNav from '../components/WalletNav'
 import FullCalendar from "@fullcalendar/react"
 import dayGridPlugin from "@fullcalendar/daygrid"
@@ -14,7 +15,7 @@ import { ModalConfirm } from '../components/ModalConfirm'
 import useTotalToCoin from '../hooks/useTotalToCoin'
 import { useAuth } from '../context/auth'
 import { useRouter } from 'next/router'
-import { collection, doc, setDoc } from 'firebase/firestore'
+import { collection, doc, getDocs, onSnapshot, setDoc } from 'firebase/firestore'
 import { db } from '../firebase/client'
 import { PostMoney } from '../types/PostMoney'
 import { zeroPadding } from '../lib/wallet'
@@ -34,6 +35,37 @@ const wallet = () => {
   const [imageConfirm, setimageConfirm] = useState<File>()
   const [insertMoney, setinsertMoney] = useState<number>(0)
   const [insertCoin, setinsertCoin] = useState<number[]>([8,10,3,4,4,7]) // 入れた金額コイン
+
+  // 今月の使用金額のデータ取得
+  const [userData, setUserData] = useState<any[]>([])
+  const [totalMonthMoney, setTotalMonthMoney] = useState<number>(0) //表示させる今月の合計金額
+  useEffect(() => {
+    const docRef = collection(db, `posts`)
+    getDocs(docRef).then(snapshot => {
+      let results: any[] = []
+
+      snapshot.docs.forEach(doc => {
+        results.push({id: doc.id, ...doc.data()})
+        setUserData(results)
+      })
+    })
+  }, [insertCoin])
+
+  useEffect(() => {
+    if (userData.length > 0) {
+      let today = new Date()
+      let year = today.getFullYear()
+      let month = today.getMonth() + 1
+      const curMonth: string = year + '-' + zeroPadding(month, 2) //現在の年-月
+      const filterData = userData.filter((data) => data.userId == fbUser?.uid && data.createdAt.slice( 0, 7 ) == curMonth)
+      let totalMoney = 0
+      filterData.map((data) => {
+        totalMoney = totalMoney + data.money
+      })
+      setTotalMonthMoney(totalMoney)
+      console.log(totalMoney)
+    }
+  }, [userData])
 
   const OnOpenComfirm = (file: File, total: number) => { // モーダル開くのとファイルにデータ入れるの同時に行う
     OpenConfirm()
@@ -99,26 +131,27 @@ const wallet = () => {
           <div className='
           absolute
           left-5
-          top-5'
+          top-5
+          flex
+          gap-5
+          justify-center'
           >
             {/* トップページへ */}
             <Link href='/' className='
-          bg-gray-800
-          m-5
-          rounded-full
-          border-gray
-          origin-shadow
-          flex
-          justify-center'
+              bg-gray-800
+              m-5
+              rounded-full
+              border-gray
+              origin-shadow'
             >
               <div
                 className='
-              bg-gray-800
-              w-16
-              h-16
-              p-3
-              border-gold
-              rounded-full'
+                bg-gray-800
+                w-16
+                h-16
+                p-3
+                border-gold
+                rounded-full'
               >
                 <Icon.House
                   size='32'
@@ -127,6 +160,9 @@ const wallet = () => {
                 />
               </div>
             </Link>
+            <p className='m-5 flex justify-center text-gold font-bold text-3xl'>
+              今月の使用金額:{totalMonthMoney}円
+            </p>
           </div>
           {/* 下部のナビゲーション */}
           <WalletNav OnClick={OpenModal} />
