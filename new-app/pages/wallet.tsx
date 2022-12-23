@@ -125,12 +125,14 @@ const wallet = () => {
 
   const colorCalendar = (calendarTotal: number) => {
     let result = 0
-    if (calendarTotal > 0) {
-      result = 0.2
-    }
-    result = 0.00002 * Math.min(calendarTotal, 10000)
-    result = Math.floor(result * 255)
-    return `rgba(253, 205, 31, ${result})`
+    let _calendarTotal = calendarTotal
+
+    _calendarTotal = (_calendarTotal / 10000)
+    _calendarTotal = Math.max(_calendarTotal, 0.1)
+    _calendarTotal = Math.min(_calendarTotal, 1)
+    if (_calendarTotal == 0.1) _calendarTotal = 0
+    
+    return `rgba(253, 205, 31, ${_calendarTotal})`
   }
 
 
@@ -161,8 +163,8 @@ const wallet = () => {
     const dateNow: string = year + '-' + zeroPadding(month, 2) + '-' + zeroPadding(day, 2)
     const post: PostMoney = {
       id: ref.id,
-      money: insertMoney,
-      createdAt: dateNow,
+      money: 1,
+      createdAt: "2022-12-20",
       userId: fbUser.uid
     }
 
