@@ -21,7 +21,7 @@ import { PostMoney } from '../types/PostMoney'
 import { zeroPadding } from '../lib/wallet'
 
 const wallet = () => {
-  const {fbUser, isLoading} = useAuth()
+  const { fbUser, isLoading } = useAuth()
   const router = useRouter()
 
   const [showModal, setshowModal] = useState<boolean>(false)
@@ -33,8 +33,8 @@ const wallet = () => {
   const CloseConfirm = () => setshowConfirm(false)
   // 画像ファイルの情報
   const [imageConfirm, setimageConfirm] = useState<File>()
-  const [insertMoney, setinsertMoney] = useState<number>(0)
-  const [insertCoin, setinsertCoin] = useState<number[]>([8,10,3,4,4,7]) // 入れた金額コイン
+  const [insertMoney, setinsertMoney] = useState<number>(0) // 入れたお金
+  const [insertCoin, setinsertCoin] = useState<number[]>([]) // 入れた金額コイン
 
   // 今月の使用金額のデータ取得
   const [userData, setUserData] = useState<any[]>([])
@@ -73,11 +73,30 @@ const wallet = () => {
     setinsertMoney(total)
   }
 
+  const handleCoinStart = () => { // 最初のコインの処理
+    const money = 23419;
+    setinsertCoin(useTotalToCoin(money))
+  }
+
+  useEffect(() => {
+    handleCoinStart() // 最初にコイン入れる
+  }, [])
+  console.log(insertCoin);
+
+
+  const handleCoinInsert = (coin: number[]) => { // 挿入のコインの処理
+    const result = insertCoin.map((e, i) =>
+      e += coin[i]
+    )
+    setinsertCoin(result)
+    console.log(insertCoin);
+  }
+
   // ログインしていなければルートディレクトリに飛ばす処理
   if (isLoading) {
     return null
   }
-  
+
   if (!fbUser) {
     router.push("/")
     return null
@@ -86,7 +105,8 @@ const wallet = () => {
   // モーダルの確定押した時の処理
   const BtnConfirm = () => {
     CloseConfirm()
-    setinsertCoin(useTotalToCoin(insertMoney)) // コインを表示させる
+    // handleCoinInsert(useTotalToCoin(insertCoin))
+    // setinsertCoin(useTotalToCoin(insertMoney)) // コインを表示させる
 
     // 送信系書いてください
     const ref = doc(collection(db, "posts"))
@@ -94,7 +114,7 @@ const wallet = () => {
     let year = today.getFullYear()
     let month = today.getMonth() + 1
     let day = today.getDate()
-    
+
     const dateNow: string = year + '-' + zeroPadding(month, 2) + '-' + zeroPadding(day, 2)
     const post: PostMoney = {
       id: ref.id,
@@ -104,7 +124,7 @@ const wallet = () => {
     }
 
     setDoc(ref, post).then(() => {
-        alert("データ送信しました")
+      alert("データ送信しました")
     })
   }
 
