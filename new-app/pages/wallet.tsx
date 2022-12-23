@@ -70,22 +70,22 @@ const wallet = () => {
         totalMoney = totalMoney + data.money
       })
       setTotalMonthMoney(totalMoney)
-      
+
       let lastDay: number
-      let monthLastDay = new Date( year, month, 0)
+      let monthLastDay = new Date(year, month, 0)
       lastDay = monthLastDay.getDate() // 月の最終日
 
       // calendarDateのデータ作成
-      const arrCalendarDate : string[] = []
-      for (let i = 1; i <= lastDay ; i++) {
+      const arrCalendarDate: string[] = []
+      for (let i = 1; i <= lastDay; i++) {
         arrCalendarDate.push(curMonth + '-' + i)
       }
       setCalendarDate(arrCalendarDate)
-      
+
       // calendarTotalのデータ作成
-      const arrCalendarTotal : number[] = []
+      const arrCalendarTotal: number[] = []
       // 最終日まで配列を作成する
-      for (let i = 0; i < lastDay ; i++) {
+      for (let i = 0; i < lastDay; i++) {
         let calcTotal: number = 0
         let matchData = userData.filter((data) => data.createdAt == calendarDate[i])
         if (matchData.length > 0) {
@@ -122,6 +122,17 @@ const wallet = () => {
     )
     setinsertCoin(result)
   }
+
+  const colorCalendar = (calendarTotal: number) => {
+    let result = 0
+    if (calendarTotal > 0) {
+      result = 0.2
+    }
+    result = 0.00002 * Math.min(calendarTotal, 10000)
+    result = Math.floor(result * 255)
+    return `rgba(253, 205, 31, ${result})`
+  }
+
 
   // ログインしていなければルートディレクトリに飛ばす処理
   if (isLoading) {
@@ -241,7 +252,14 @@ const wallet = () => {
               headerToolbar={{ left: '', center: 'title', right: '' }}
               initialView="dayGridMonth"
               locale="ja"
-              // 日ごとにtailwindcssを適用
+              events={
+                // [{ title: "aaa", date: "2022-12-11", color: "#F99", display: "background" },]
+                calendarDate.map((v, i) => {
+                  return {
+                    title: "", date: v, display: "background", backgroundColor: colorCalendar(calendarTotal[i])
+                  }
+                })
+              }
             />
           </StyleWrapper>
         </ShowModal>
