@@ -124,14 +124,14 @@ const wallet = () => {
   }
 
   const colorCalendar = (calendarTotal: number) => {
-    let result = 0
     let _calendarTotal = calendarTotal
 
     _calendarTotal = (_calendarTotal / 10000)
-    _calendarTotal = Math.max(_calendarTotal, 0.1)
+    _calendarTotal = Math.max(_calendarTotal, 0)
     _calendarTotal = Math.min(_calendarTotal, 1)
-    if (_calendarTotal == 0.1) _calendarTotal = 0
-
+    if (_calendarTotal <= 0.3 && _calendarTotal != 0) {
+      _calendarTotal = 0.3
+    }
     return `rgba(253, 205, 31, ${_calendarTotal})`
   }
 
