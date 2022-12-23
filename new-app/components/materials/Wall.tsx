@@ -1,7 +1,7 @@
 import { useFrame } from "@react-three/fiber"
 import { usePlane } from "@react-three/cannon"
 
-export const Floor = () => {
+export const Wall = () => {
   const [ref, api] = usePlane(() => ({
     mass: 10,
     // args: [100, 1, 100],
@@ -12,7 +12,7 @@ export const Floor = () => {
 
   useFrame(({ mouse }) => {
 
-    // api.rotation.set(80 -2, mouse.x * 0.2, 0)
+    api.rotation.set(80 - 10, mouse.x * 0.2, 0)
   })
   return (
     <>

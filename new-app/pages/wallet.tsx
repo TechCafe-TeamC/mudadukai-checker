@@ -74,14 +74,13 @@ const wallet = () => {
   }
 
   const handleCoinStart = () => { // 最初のコインの処理
-    const money = 23419;
-    setinsertCoin(useTotalToCoin(money))
+    setinsertCoin(useTotalToCoin(totalMonthMoney))
   }
 
   useEffect(() => {
     handleCoinStart() // 最初にコイン入れる
-  }, [])
-  console.log(insertCoin);
+  }, [totalMonthMoney])
+  // console.log(insertCoin);
 
 
   const handleCoinInsert = (coin: number[]) => { // 挿入のコインの処理
