@@ -19,6 +19,7 @@ import { collection, doc, getDocs, onSnapshot, query, setDoc, where } from 'fire
 import { db } from '../firebase/client'
 import { PostMoney } from '../types/PostMoney'
 import { zeroPadding } from '../lib/wallet'
+import { CalendarData } from '../types/Calendar'
 
 const wallet = () => {
   const { fbUser, isLoading } = useAuth()
@@ -54,6 +55,10 @@ const wallet = () => {
     }
   }, [fbUser, insertCoin])
 
+  //  const [calendarData, setCalendarData] = useState<CalendarData[]>([])
+  const [calendarDate, setCalendarDate] = useState<string[]>([])
+  const [calendarTotal, setCalendarTotal] = useState<number[]>([])
+
   useEffect(() => {
     if (userData.length > 0) {
       let today = new Date()
@@ -66,9 +71,33 @@ const wallet = () => {
         totalMoney = totalMoney + data.money
       })
       setTotalMonthMoney(totalMoney)
+      
+      let lastDay: number
+      let monthLastDay = new Date( year, month, 0)
+      lastDay = monthLastDay.getDate() // 月の最終日
+
+      for (let i = 1; i <= lastDay ; i++) {
+        calendarDate.push(curMonth + '-' + i)
+      }
+      setCalendarDate(calendarDate)
+      
+      for (let i = 0; i < lastDay ; i++) {
+        let calcTotal = 0
+        let matchData = userData.filter((data) => data.createdAt == calendarDate[i])
+        console.log(matchData)
+        if (matchData[i]) {
+          for (let j = 0; j < matchData.length; j++) {
+            calcTotal = calcTotal + matchData[i].money
+            console.log(calcTotal)
+          }
+        }
+        calendarTotal.push(calcTotal)
+      }
+      setCalendarTotal(calendarTotal)
     }
   }, [userData])
 
+  console.log(calendarTotal)
   const OnOpenComfirm = (file: File, total: number) => { // モーダル開くのとファイルにデータ入れるの同時に行う
     OpenConfirm()
     setimageConfirm(file)
