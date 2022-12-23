@@ -15,7 +15,8 @@ export const Yen500 = memo(({ pos, fileid }: Props) => {
 
   const [ref] = useBox(() => ({
     mass: 0.5,
-    args: [2.3, 2.3, 0.1],
+    // args: [2.3, 2.3, 0.1],
+    args: [3.5, 3.5, 0.15],
     position: [pos[0], pos[1], pos[2]],
     rotation: [0, 0, 0],
   }))
@@ -23,6 +24,6 @@ export const Yen500 = memo(({ pos, fileid }: Props) => {
   let fbxClone = fbx.clone()
 
   return (
-    <primitive object={fbxClone} ref={ref} scale={0.1} />
+    <primitive object={fbxClone} ref={ref} scale={0.2} />
   )
 })

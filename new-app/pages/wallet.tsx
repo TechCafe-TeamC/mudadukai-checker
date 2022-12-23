@@ -34,7 +34,7 @@ const wallet = () => {
   // 画像ファイルの情報
   const [imageConfirm, setimageConfirm] = useState<File>()
   const [insertMoney, setinsertMoney] = useState<number>(0) // 入れたお金
-  const [insertCoin, setinsertCoin] = useState<number[]>([0,0,0,0,0,0]) // 入れた金額コイン
+  const [insertCoin, setinsertCoin] = useState<number[]>([0, 0, 0, 0, 0, 0]) // 入れた金額コイン
 
   // 今月の使用金額のデータ取得
   const [userData, setUserData] = useState<any[]>([])
@@ -45,9 +45,9 @@ const wallet = () => {
       const docRef = query(collection(db, `posts`), where("userId", "==", fbUser.uid))
       getDocs(docRef).then(snapshot => {
         let results: any[] = [];
-        
+
         snapshot.docs.forEach(doc => {
-          results.push({id: doc.id, ...doc.data()})
+          results.push({ id: doc.id, ...doc.data() })
           setUserData(results)
         })
       })
@@ -60,7 +60,7 @@ const wallet = () => {
       let year = today.getFullYear()
       let month = today.getMonth() + 1
       const curMonth: string = year + '-' + zeroPadding(month, 2) //現在の年-月
-      const filterData = userData.filter((data) => data.createdAt.slice( 0, 7 ) == curMonth)
+      const filterData = userData.filter((data) => data.createdAt.slice(0, 7) == curMonth)
       let totalMoney = 0
       filterData.map((data) => {
         totalMoney = totalMoney + data.money
@@ -73,6 +73,7 @@ const wallet = () => {
     OpenConfirm()
     setimageConfirm(file)
     setinsertMoney(total)
+    // setinsertCoin([0, 0, 0, 0, 0, 0])
   }
 
   const handleCoinStart = () => { // 最初のコインの処理
@@ -81,9 +82,11 @@ const wallet = () => {
 
   useEffect(() => {
     handleCoinStart() // 最初にコイン入れる
+    // setinsertCoin([0, 0, 0, 0, 0, 0])
+
   }, [totalMonthMoney])
 
-  const handleCoinInsert = (coin: number[]) => { // 挿入のコインの処理
+  const handleCoinInsert = (coin: number[]) => { // 
     const result = insertCoin.map((e, i) =>
       (e + coin[i])
     )
@@ -99,11 +102,16 @@ const wallet = () => {
     router.push("/")
     return null
   }
+  console.log(insertCoin);
+
 
   // モーダルの確定押した時の処理
   const BtnConfirm = () => {
+    setinsertCoin([0, 0, 0, 0, 0, 0])
+
     CloseConfirm()
-    handleCoinInsert(insertCoin)
+    // handleCoinInsert(insertCoin) // 使わない
+
 
     // 送信系書いてください
     const ref = doc(collection(db, "posts"))
@@ -121,15 +129,13 @@ const wallet = () => {
     }
 
     setDoc(ref, post).then(() => {
-      alert("データ送信しました")
+      // alert("データ送信しました")
     })
   }
 
   return (
     <>
       <Layout2>
-        <FileInput onChange={OnOpenComfirm} />
-
         <div className='
         flex
         justify-right
@@ -193,7 +199,7 @@ const wallet = () => {
             </div>
           </div>
           {/* 下部のナビゲーション */}
-          <WalletNav OnClick={OpenModal} />
+          <WalletNav OnClick={OpenModal} OnOpenComforim={OnOpenComfirm} />
         </div>
         <ShowModal
           showModal={showModal}
