@@ -131,7 +131,7 @@ const wallet = () => {
     _calendarTotal = Math.max(_calendarTotal, 0.1)
     _calendarTotal = Math.min(_calendarTotal, 1)
     if (_calendarTotal == 0.1) _calendarTotal = 0
-    
+
     return `rgba(253, 205, 31, ${_calendarTotal})`
   }
 
@@ -163,8 +163,8 @@ const wallet = () => {
     const dateNow: string = year + '-' + zeroPadding(month, 2) + '-' + zeroPadding(day, 2)
     const post: PostMoney = {
       id: ref.id,
-      money: 1,
-      createdAt: "2022-12-20",
+      money: insertMoney,
+      createdAt: dateNow,
       userId: fbUser.uid
     }
 
