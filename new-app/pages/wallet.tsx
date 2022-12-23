@@ -160,9 +160,20 @@ const wallet = () => {
                 />
               </div>
             </Link>
-            <p className='m-5 flex justify-center text-gold font-bold text-3xl'>
-              今月の使用金額:{totalMonthMoney}円
-            </p>
+            {/* 合計金額表示ウィンドウ */}
+            <div className='
+              bg-gray-800
+              my-5
+              rounded-full
+              border-gray
+              origin-shadow'
+            >
+              <div className='flex items-center h-full px-5 text-gold font-bold border-gold rounded-full text-1xl'>
+                <p className='w-36 p-2'>今月の使用金額：</p>
+                <p className='bg-gray-900 px-2 w-32 rounded-md text-right text-2xl text-white origin-shadow'>{totalMonthMoney}</p>
+                <p className='p-3'>円</p>
+              </div>
+            </div>
           </div>
           {/* 下部のナビゲーション */}
           <WalletNav OnClick={OpenModal} />
