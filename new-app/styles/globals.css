@@ -35,6 +35,11 @@
     left: 50%;
     transform: translate(-50%,-50%);
 }
+.x-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
 
 /* カレンダーの日付ごとの色対応 */
 /* day-total-{金額閾値} */

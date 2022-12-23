@@ -188,19 +188,20 @@ const wallet = () => {
             z-[-1]'
           >
             <ShowFallYen coin={insertCoin!} />
-          </div>
-          <div className='
-          absolute
-          left-5
+          </div>          <div className='
           top-5
           flex
+          x-center
+          md:gap-0
           gap-5
           justify-center'
           >
             {/* トップページへ */}
             <Link href='/' className='
               bg-gray-800
-              m-5
+              my-10
+              md:m-5
+              mr-0
               rounded-full
               border-gray
               origin-shadow'
@@ -222,17 +223,34 @@ const wallet = () => {
               </div>
             </Link>
             {/* 合計金額表示ウィンドウ */}
-            <div className='absolute top-32 left-5 
+            <div className='flex
               bg-gray-800
               my-5
               rounded-full
               border-gray
-              origin-shadow'
+              origin-shadow
+              '
             >
-              <div className='flex items-center h-full px-5 text-gold font-bold border-gold rounded-full text-1xl'>
-                <p className='w-36 p-1'>今月の使用金額：</p>
-                <p className='bg-gray-900 p-1 px-2 w-28 rounded-md text-right text-2xl text-white origin-shadow-inset'>{totalMonthMoney}</p>
-                <p className='p-3'>円</p>
+              <div className='
+                flex-row
+                w-56
+                px-10
+                items-center
+                h-full
+                text-gold
+                font-bold
+                border-gold
+                rounded-full
+                text-1xl
+                md:flex
+                md:px-5
+                md:w-auto'
+              >
+                <p className='w-[8.5rem] py-2 md:py-4 px-1'>今月の使用金額：</p>
+                <div className='flex justify-center items-center w-[8.5rem]'>
+                  <p className='bg-gray-900 p-1 px-2 w-28 rounded-md text-right text-2xl text-white origin-shadow-inset'>{totalMonthMoney}</p>
+                  <p className='p-3'>円</p>
+                </div>
               </div>
             </div>
           </div>
