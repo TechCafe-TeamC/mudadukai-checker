@@ -35,3 +35,75 @@
     left: 50%;
     transform: translate(-50%,-50%);
 }
+
+/* カレンダーの日付ごとの色対応 */
+/* day-total-{金額閾値} */
+
+/* 0円 */
+.day-total-0 {
+    background-color: rgba(253, 205, 31, 0);
+}
+/* 1円 */
+.day-total-1 {
+    background-color: rgba(253, 205, 31, 0.2);
+}
+/* 100円 */
+.day-total-100 {
+    background-color: rgba(253, 205, 31, 0.25);
+}
+/* 500円 */
+.day-total-500 {
+    background-color: rgba(253, 205, 31, 0.3);
+}
+/* 1000円 */
+.day-total-1000 {
+    background-color: rgba(253, 205, 31, 0.35);
+}
+/* 2000円 */
+.day-total-2000 {
+    background-color: rgba(253, 205, 31, 0.4);
+}
+/* 2500円 */
+.day-total-2500 {
+    background-color: rgba(253, 205, 31, 0.45);
+}
+/* 3000円 */
+.day-total-3000 {
+    background-color: rgba(253, 205, 31, 0.5);
+}
+/* 3500円 */
+.day-total-3500 {
+    background-color: rgba(253, 205, 31, 0.55);
+}
+/* 4000円 */
+.day-total-4000 {
+    background-color: rgba(253, 205, 31, 0.6);
+}
+/* 4500円 */
+.day-total-4500 {
+    background-color: rgba(253, 205, 31, 0.65);
+}
+/* 5000円 */
+.day-total-5000 {
+    background-color: rgba(253, 205, 31, 0.7);
+}
+/* 6000円 */
+.day-total-6000 {
+    background-color: rgba(253, 205, 31, 0.8);
+}
+/* 7000円 */
+.day-total-7000 {
+    background-color: rgba(253, 205, 31, 0.85);
+}
+/* 8000円 */
+.day-total-8000 {
+    background-color: rgba(253, 205, 31, 0.9);
+}
+/* 9000円 */
+.day-total-9000 {
+    background-color: rgba(253, 205, 31, 0.95);
+}
+/* 10000円 */
+.day-total-1000 {
+    background-color: rgba(253, 205, 31, 1);
+}

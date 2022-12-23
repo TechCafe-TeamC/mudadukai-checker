@@ -243,6 +243,7 @@ const wallet = () => {
               headerToolbar={{ left: '', center: 'title', right: '' }}
               initialView="dayGridMonth"
               locale="ja"
+              // 日ごとにtailwindcssを適用
             />
           </StyleWrapper>
         </ShowModal>
