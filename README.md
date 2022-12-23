@@ -1,15 +1,12 @@
-# TechCafeハッカソンプロジェクト
+# TECHCAFEハッカソン 2022 Winter
 
-予算と位置情報から近くの飲食店を検索するアプリケーション
-Figmaリンク（https://www.figma.com/file/llLN41dNIqlOmkysNhtqkM/%E4%BC%81%E7%94%BB%E3%83%BB%E8%80%83%E6%A1%88?node-id=0%3A1&t=iQFyhJCrpg9IpGk2-1）
+2022/12/18~2022/12/24にTECH CAFEで行われたハッカソンで作成した作品です
 
-## コミットメッセージ
+リンク: https://techcafe2019.connpass.com/event/267576/
 
-| name   | effect                 |
-| ------ | ---------------------- |
-| add    | 新しいファイルやコード |
-| fix    | バグの修正             |
-| delete | ファイルやコードの削除 |
-| change | 仕様変更               |
+## 無駄遣いチェッカー
 
-ex.(add: ユーザーネーム登録機能)
+### アプリ説明
+レシートを読み取り月に使用した金額を3Dモデルのコインで閲覧できるアプリケーション
+
+※環境構築はdocsに入っています
