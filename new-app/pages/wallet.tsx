@@ -55,9 +55,8 @@ const wallet = () => {
     }
   }, [fbUser, insertCoin])
 
-  //  const [calendarData, setCalendarData] = useState<CalendarData[]>([])
-  const [calendarDate, setCalendarDate] = useState<string[]>([])
-  const [calendarTotal, setCalendarTotal] = useState<number[]>([])
+  const [calendarDate, setCalendarDate] = useState<string[]>([]) // 月のカレンダーの日付配列
+  const [calendarTotal, setCalendarTotal] = useState<number[]>([]) // 月のカレンダーの日ごとの合計金額配列
 
   useEffect(() => {
     if (userData.length > 0) {
@@ -76,28 +75,30 @@ const wallet = () => {
       let monthLastDay = new Date( year, month, 0)
       lastDay = monthLastDay.getDate() // 月の最終日
 
+      // calendarDateのデータ作成
+      const arrCalendarDate : string[] = []
       for (let i = 1; i <= lastDay ; i++) {
-        calendarDate.push(curMonth + '-' + i)
+        arrCalendarDate.push(curMonth + '-' + i)
       }
-      setCalendarDate(calendarDate)
+      setCalendarDate(arrCalendarDate)
       
+      // calendarTotalのデータ作成
+      const arrCalendarTotal : number[] = []
+      // 最終日まで配列を作成する
       for (let i = 0; i < lastDay ; i++) {
-        let calcTotal = 0
+        let calcTotal: number = 0
         let matchData = userData.filter((data) => data.createdAt == calendarDate[i])
-        console.log(matchData)
-        if (matchData[i]) {
+        if (matchData.length > 0) {
           for (let j = 0; j < matchData.length; j++) {
-            calcTotal = calcTotal + matchData[i].money
-            console.log(calcTotal)
+            calcTotal = calcTotal + matchData[j].money
           }
         }
-        calendarTotal.push(calcTotal)
+        arrCalendarTotal.push(calcTotal)
       }
-      setCalendarTotal(calendarTotal)
+      setCalendarTotal(arrCalendarTotal)
     }
   }, [userData])
 
-  console.log(calendarTotal)
   const OnOpenComfirm = (file: File, total: number) => { // モーダル開くのとファイルにデータ入れるの同時に行う
     OpenConfirm()
     setimageConfirm(file)
@@ -131,8 +132,6 @@ const wallet = () => {
     router.push("/")
     return null
   }
-  console.log(insertCoin);
-
 
   // モーダルの確定押した時の処理
   const BtnConfirm = () => {
@@ -140,7 +139,6 @@ const wallet = () => {
 
     CloseConfirm()
     // handleCoinInsert(insertCoin) // 使わない
-
 
     // 送信系書いてください
     const ref = doc(collection(db, "posts"))
