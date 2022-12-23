@@ -29,7 +29,8 @@ export const ShowFallYen = memo(({ coin }: Props) => {
                     coin ?
                         coin.map((e, i) =>
                             [...Array(e)].map((c, j) =>
-                                <Yen500 posX={Math.random() * 30 - 15} key={j + e * i} fileid={i} />
+                                <Yen500 pos={[Math.random() * 10 - 5, Math.random() * 50 + 25, Math.random() * 10 - 5]} key={j + e * i} fileid={i} />
+                                // <Yen500 pos={[Math.random() * 10 - 5, 0, 0]} key={j + e * i} fileid={i} />
                             ))
                         : <></>
                 }
