@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import WalletNav from '../components/WalletNav'
 import FullCalendar from "@fullcalendar/react"
 import dayGridPlugin from "@fullcalendar/daygrid"
@@ -32,7 +32,7 @@ const wallet = () => {
   const CloseConfirm = () => setshowConfirm(false)
   // 画像ファイルの情報
   const [imageConfirm, setimageConfirm] = useState<File>()
-  const [insertMoney, setinsertMoney] = useState<number>(0)
+  const [insertMoney, setinsertMoney] = useState<number>(0) // 入れたお金
   const [insertCoin, setinsertCoin] = useState<number[]>([]) // 入れた金額コイン
 
   const OnOpenComfirm = (file: File, total: number) => { // モーダル開くのとファイルにデータ入れるの同時に行う
@@ -42,11 +42,22 @@ const wallet = () => {
   }
 
   const handleCoinStart = () => { // 最初のコインの処理
-
+    const money = 23419;
+    setinsertCoin(useTotalToCoin(money))
   }
 
-  const handleCoinInsert = () => { // 挿入のコインの処理
+  useEffect(() => {
+    handleCoinStart() // 最初にコイン入れる
+  }, [])
+  console.log(insertCoin);
 
+
+  const handleCoinInsert = (coin: number[]) => { // 挿入のコインの処理
+    const result = insertCoin.map((e, i) =>
+      e += coin[i]
+    )
+    setinsertCoin(result)
+    console.log(insertCoin);
   }
 
   // ログインしていなければルートディレクトリに飛ばす処理
@@ -62,7 +73,8 @@ const wallet = () => {
   // モーダルの確定押した時の処理
   const BtnConfirm = () => {
     CloseConfirm()
-    setinsertCoin(useTotalToCoin(insertMoney)) // コインを表示させる
+    // handleCoinInsert(useTotalToCoin(insertCoin))
+    // setinsertCoin(useTotalToCoin(insertMoney)) // コインを表示させる
 
     // 送信系書いてください
     const ref = doc(collection(db, "posts"))
