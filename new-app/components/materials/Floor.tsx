@@ -14,9 +14,9 @@ export const Floor = () => {
   return (
     <>
       {/* @ts-ignore */}
-      <mesh ref={ref} scale={200}>
+      <mesh ref={ref} scale={200} receiveShadow castShadow>
         <planeGeometry />
-        <meshStandardMaterial color='rgb(36,46,60)' />
+        <meshStandardMaterial color='#5b5b74'/>
       </mesh >
     </>
   )

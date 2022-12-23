@@ -19,6 +19,10 @@ export const ShowFallYen = memo(({ coin }: Props) => {
                 rotation: [ -0.3, 0, 0]
             }}
         >
+            {/* <ambientLight intensity={0.07} /> */}
+            <fog attach="fog" color={"#101622"} near={1} far={40} />
+            <pointLight position={[30, 40, 10]} castShadow />
+            <directionalLight position={[30, 30, 10]} intensity={0.6} castShadow />
             <Physics>
                 <Floor />
                 {
