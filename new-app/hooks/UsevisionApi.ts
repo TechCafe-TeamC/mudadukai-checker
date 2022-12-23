@@ -1,4 +1,3 @@
-// const api_key = `AIzaSyAXKBp3xOb8-jYXt7Bzl9zlRROQwsob5zY`;
 const url = `https://vision.googleapis.com/v1/images:annotate`;
 
 // Send API Request to Cloud Vision API
