@@ -1,8 +1,5 @@
-import Link from 'next/link'
 import * as Icon from 'react-bootstrap-icons'
 import React from 'react'
-import { type } from 'os'
-import { useState, useEffect } from 'react'
 import { FileInput } from './FileInput'
 
 type Props = {
@@ -11,7 +8,6 @@ type Props = {
 }
 
 const WalletNav = ({ OnClick, OnOpenComforim }: Props) => {
-    const [image, setImage] = useState<HTMLInputElement>()
 
     return (
         <div className='

@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, useState } from 'react'
+import React, { ChangeEventHandler } from 'react'
 import sendVisionAPI from '../hooks/UsevisionApi'
 
 type Props = {
@@ -7,8 +7,6 @@ type Props = {
 }
 
 export const FileInput = ({ onChange, isCapture }: Props) => {
-
-    const [file, setfile] = useState<HTMLInputElement>()
 
     // ¥マークの誤認識を修正する
     const correctYenMark = (text: string) => {
@@ -81,9 +79,7 @@ export const FileInput = ({ onChange, isCapture }: Props) => {
             const result: string = base64.replace(/^data:image\/(png|jpeg);base64,/, '')
             const a = sendVisionAPI(result)
                 .then(result => {
-                    // console.log(result.responses[0].textAnnotations[0].description);
                     const amount = findAmountByGoukei(result.responses[0].textAnnotations)
-                    // console.log(amount);
                     amount !== undefined
                         ? onChange(file, amount!)
                         : alert("レシートを読み込めませんでした。もう一度お試しください。")
@@ -95,7 +91,6 @@ export const FileInput = ({ onChange, isCapture }: Props) => {
         const files = event.currentTarget.files;
         if (!files || files?.length === 0) return;
         const file = files[0];
-        const base64string = convertToBase64(file)
     };
 
     return (
