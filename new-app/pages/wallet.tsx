@@ -6,7 +6,6 @@ import FullCalendar from "@fullcalendar/react"
 import dayGridPlugin from "@fullcalendar/daygrid"
 import styled from "@emotion/styled"
 import { ShowModal } from '../components/ShowModal'
-import { FileInput } from '../components/FileInput'
 import * as Icon from 'react-bootstrap-icons'
 import Link from 'next/link'
 import Layout2 from '../components/WalletLayout'
@@ -15,11 +14,10 @@ import { ModalConfirm } from '../components/ModalConfirm'
 import useTotalToCoin from '../hooks/useTotalToCoin'
 import { useAuth } from '../context/auth'
 import { useRouter } from 'next/router'
-import { collection, doc, getDocs, onSnapshot, query, setDoc, where } from 'firebase/firestore'
+import { collection, doc, getDocs, query, setDoc, where } from 'firebase/firestore'
 import { db } from '../firebase/client'
 import { PostMoney } from '../types/PostMoney'
 import { zeroPadding } from '../lib/wallet'
-import { CalendarData } from '../types/Calendar'
 
 const wallet = () => {
   const { fbUser, isLoading } = useAuth()
@@ -103,7 +101,6 @@ const wallet = () => {
     OpenConfirm()
     setimageConfirm(file)
     setinsertMoney(total)
-    // setinsertCoin([0, 0, 0, 0, 0, 0])
   }
 
   const handleCoinStart = () => { // 最初のコインの処理
@@ -112,16 +109,16 @@ const wallet = () => {
 
   useEffect(() => {
     handleCoinStart() // 最初にコイン入れる
-    // setinsertCoin([0, 0, 0, 0, 0, 0])
 
   }, [totalMonthMoney])
 
-  const handleCoinInsert = (coin: number[]) => { // 
-    const result = insertCoin.map((e, i) =>
-      (e + coin[i])
-    )
-    setinsertCoin(result)
-  }
+  // 後日開発で使う予定
+  // const handleCoinInsert = (coin: number[]) => { // 
+  //   const result = insertCoin.map((e, i) =>
+  //     (e + coin[i])
+  //   )
+  //   setinsertCoin(result)
+  // }
 
   const colorCalendar = (calendarTotal: number) => {
     let _calendarTotal = calendarTotal
@@ -134,7 +131,6 @@ const wallet = () => {
     }
     return `rgba(253, 205, 31, ${_calendarTotal})`
   }
-
 
   // ログインしていなければルートディレクトリに飛ばす処理
   if (isLoading) {
@@ -151,7 +147,6 @@ const wallet = () => {
     setinsertCoin([0, 0, 0, 0, 0, 0])
 
     CloseConfirm()
-    // handleCoinInsert(insertCoin) // 使わない
 
     // 送信系書いてください
     const ref = doc(collection(db, "posts"))
@@ -273,7 +268,6 @@ const wallet = () => {
               initialView="dayGridMonth"
               locale="ja"
               events={
-                // [{ title: "aaa", date: "2022-12-11", color: "#F99", display: "background" },]
                 calendarDate.map((v, i) => {
                   return {
                     title: "", date: v, display: "background", backgroundColor: colorCalendar(calendarTotal[i])

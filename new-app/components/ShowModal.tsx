@@ -10,7 +10,7 @@ type Props = {
     children: React.ReactNode
 }
 
-export const ShowModal = ({ showModal, OpenModal, CloseModal, title, children }: Props) => {
+export const ShowModal = ({ showModal, CloseModal, title, children }: Props) => {
     return (
         <>
             {showModal ? (

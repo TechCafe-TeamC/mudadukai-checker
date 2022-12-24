@@ -4,7 +4,6 @@ import { auth } from "../firebase/client"
 import { useAuthState } from "react-firebase-hooks/auth"
 import Login from './Login'
 import { login } from '../lib/auth'
-import Image from 'next/image'
 
 const Hero = () => {
   const [user] = useAuthState(auth)

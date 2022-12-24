@@ -3,9 +3,7 @@ import { Canvas } from "@react-three/fiber"
 import { Yen500 } from "./materials/Yen500"
 import { Physics } from "@react-three/cannon"
 import { Floor } from "./materials/Floor"
-import useTotalToCoin from "../hooks/useTotalToCoin"
 import { memo } from "react"
-import { radToDeg } from "three/src/math/MathUtils"
 import { Wall } from "./materials/Wall"
 
 type Props = {
@@ -32,7 +30,6 @@ export const ShowFallYen = memo(({ coin }: Props) => {
                         coin.map((e, i) =>
                             [...Array(e)].map((c, j) =>
                                 <Yen500 pos={[Math.random() * 10 - 5, Math.random() * 100 + 25, Math.random() * 10 - 5]} key={j + e * i} fileid={i} />
-                                // <Yen500 pos={[Math.random() * 10 - 5, 0, 0]} key={j + e * i} fileid={i} />
                             ))
                         : <></>
                 }
