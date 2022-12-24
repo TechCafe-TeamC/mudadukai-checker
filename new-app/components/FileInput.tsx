@@ -91,6 +91,7 @@ export const FileInput = ({ onChange, isCapture }: Props) => {
         const files = event.currentTarget.files;
         if (!files || files?.length === 0) return;
         const file = files[0];
+        convertToBase64(file)
     };
 
     return (
