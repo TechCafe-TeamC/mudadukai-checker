@@ -8,7 +8,6 @@ import styled from "@emotion/styled"
 import { ShowModal } from '../components/ShowModal'
 import * as Icon from 'react-bootstrap-icons'
 import Link from 'next/link'
-import Layout2 from '../components/WalletLayout'
 import { ShowFallYen } from '../components/ShowFallYen'
 import { ModalConfirm } from '../components/ModalConfirm'
 import useTotalToCoin from '../hooks/useTotalToCoin'
@@ -18,6 +17,9 @@ import { collection, doc, getDocs, query, setDoc, where } from 'firebase/firesto
 import { db } from '../firebase/client'
 import { PostMoney } from '../types/PostMoney'
 import { zeroPadding } from '../lib/wallet'
+import Button from '../components/wallet/Button'
+import { motion } from 'framer-motion'
+import { walletTransition } from '../animations/variants'
 
 const wallet = () => {
   const { fbUser, isLoading } = useAuth()
@@ -169,8 +171,9 @@ const wallet = () => {
   }
 
   return (
-    <>
-      <Layout2>
+      <motion.div
+        {...walletTransition}
+      >
         <div className='
         flex
         justify-right
@@ -185,40 +188,27 @@ const wallet = () => {
             z-[-1]'
           >
             <ShowFallYen coin={insertCoin!} />
-          </div>          <div className='
+          </div>          
+          
+          <div className='
           top-5
           flex
           x-center
           md:gap-0
           gap-5
-          justify-center'
+          justify-center
+          items-center'
           >
             {/* トップページへ */}
-            <Link href='/' className='
-              bg-gray-800
-              my-10
-              md:m-5
-              mr-0
-              rounded-full
-              border-gray
-              origin-shadow'
-            >
-              <div
-                className='
-                bg-gray-800
-                w-16
-                h-16
-                p-3
-                border-gold
-                rounded-full'
-              >
-                <Icon.House
-                  size='32'
-                  className='
-                  text-gold'
-                />
-              </div>
-            </Link>
+              <Button>
+                <Link href='/'>
+                  <Icon.House
+                    size='30'
+                    className='
+                    text-gold'
+                  />
+                </Link>
+              </Button>
             {/* 合計金額表示ウィンドウ */}
             <div className='flex
               bg-gray-800
@@ -289,8 +279,7 @@ const wallet = () => {
           </StyleWrapper>
         </ShowModal>
 
-      </Layout2>
-    </>
+      </motion.div>
   )
 }
 

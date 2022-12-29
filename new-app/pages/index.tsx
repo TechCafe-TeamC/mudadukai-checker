@@ -1,11 +1,14 @@
 import type { NextPage } from 'next'
 import React from 'react'
 import Hero from '../components/Hero'
-import Layout1 from '../components/Layout'
+import { motion } from 'framer-motion'
+import { indexTransition } from '../animations/variants'
 
 const Home: NextPage = () => {
   return (
-    <Layout1>
+    <motion.div
+      {...indexTransition}
+    >
       <div className='
         flex
         justify-center
@@ -13,7 +16,7 @@ const Home: NextPage = () => {
       >
         <Hero />
       </div>
-    </Layout1>
+    </motion.div>
   )
 }
 

@@ -9,8 +9,8 @@ type Props = {
   fileid: number
 }
 
-const fbxs = ["./yen500.fbx", "./yen100.fbx", "./yen50.fbx", "./yen10.fbx", "./yen5.fbx", "./yen1.fbx"]
 export const Yen500 = memo(({ pos, fileid }: Props) => {
+  const fbxs = ["./yen500.fbx", "./yen100.fbx", "./yen50.fbx", "./yen10.fbx", "./yen5.fbx", "./yen1.fbx"]
   // console.log(fileid);
 
   const [ref] = useBox(() => ({
