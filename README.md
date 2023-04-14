@@ -6,7 +6,7 @@
 
 ## 無駄遣いチェッカー
 
-デプロイ先: https://mudadukai-checker-tau.vercel.app/
+デプロイ先: https://mudadukai-checker.netlify.app
 
 ### アプリ説明
 レシートを読み取り月に使用した金額を3Dモデルのコインで閲覧できるアプリケーション
